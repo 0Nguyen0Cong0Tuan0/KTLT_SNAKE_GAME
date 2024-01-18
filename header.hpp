@@ -20,7 +20,6 @@ using namespace std;
 #define MAX_SIZE_SNAKE 16
 #define MAX_SIZE_FOOD 6
 
-int SPD = 1;
 #define MAX_SPEED 3
 
 #define MSSV "22127365_22127436_"
@@ -29,7 +28,7 @@ int SPD = 1;
 //POINT snake[MAX_SIZE_SNAKE];
 //POINT food[MAX_SIZE_FOOD];
 
-//int DIR_LOCK, DIR, SPD, WIN_HEIGHT;
+//int DIR_LOCK, DIR, WIN_HEIGHT;
 //int FOOD_INDX, SIZE_SNAKE = 6;
 
 //bool ALIVE;

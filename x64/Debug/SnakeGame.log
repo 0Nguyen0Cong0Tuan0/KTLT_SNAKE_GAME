@@ -1,6 +1,2 @@
-﻿  main.cpp
-  map_generator.cpp
-  snake.cpp
-  snake.hpp
-  Generating Code...
-D:\KTLT_SNAKE_GAME\SnakeGame\map_generator.cpp(40): error C4700: uninitialized local variable 'countX' used
+﻿  snake.cpp
+  SnakeGame.vcxproj -> D:\KTLT_SNAKE_GAME\KTLT_SNAKE_GAME\x64\Debug\SnakeGame.exe

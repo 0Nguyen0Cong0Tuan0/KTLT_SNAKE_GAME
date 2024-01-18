@@ -24,6 +24,28 @@ int main()
 	InitSnake(size.X, size.Y, snakePos, obsPos);
 	DrawSnake(snakePos);
 
+	unsigned char ch;
+
+	while (true)
+	{
+		ch = InputKey();
+		switch (ch)
+		{
+		case ARROW_UP:
+			MoveUp(size.X, size.Y, snakePos, foodPos, obsPos);
+			break;
+		case ARROW_DOWN:
+			MoveDown(size.X, size.Y, snakePos, foodPos, obsPos);
+			break;
+		case ARROW_LEFT:
+			MoveLeft(size.X, size.Y, snakePos, foodPos, obsPos);
+			break;
+		case ARROW_RIGHT:
+			MoveRight(size.X, size.Y, snakePos, foodPos, obsPos);
+			break;
+		}
+	}
+
 	GotoXY(0, size.Y - 3);
 	return 0;
 }

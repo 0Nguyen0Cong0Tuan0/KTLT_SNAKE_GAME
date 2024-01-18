@@ -1,1 +1,2 @@
 D:\KTLT_SNAKE_GAME\SnakeGame\x64\Debug\SnakeGame.exe
+D:\KTLT_SNAKE_GAME\KTLT_SNAKE_GAME\x64\Debug\SnakeGame.exe
