@@ -5,7 +5,7 @@ void InitSnake(int sizeX, int sizeY, vector<pair<int,int>>& snakePos, vector<pai
 
 void DrawSnake(vector<pair<int, int>> snakePos);
 
-void EatFood(vector<pair<int, int>> &snakePos, vector<pair<int, int>> foodPos);
+void EatFood(vector<pair<int, int>>& snakePos, vector<pair<int, int>> foodPos);
 
 void ProcessDead(int sizeY);
 

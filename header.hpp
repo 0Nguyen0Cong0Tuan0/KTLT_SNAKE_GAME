@@ -22,7 +22,7 @@ using namespace std;
 
 #define MAX_SPEED 3
 
-#define MSSV "22127365_22127436_"
+#define MSSV "22127052_22127089_22127365_22127436"
 
 
 //POINT snake[MAX_SIZE_SNAKE];

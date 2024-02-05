@@ -23,7 +23,7 @@ void DrawSnake(vector<pair<int, int>> snakePos)
 	{
 		GotoXY(snakePos[i].first, snakePos[i].second);
 		TextColor(BLACK, GREEN);
-		cout << MSSV[0];
+		cout << MSSV[i];
 		TextColor(BLACK, WHITE);
 	}
 }
@@ -66,8 +66,6 @@ void MoveRight(int sizeX, int sizeY, vector<pair<int, int>>& snakePos, vector<pa
 			GenerateRandomFood(sizeX, sizeY, foodPos, obsPos);
 		}
 
-		GenerateRandomFood(sizeX, sizeY, foodPos, obsPos);
-
 		GotoXY(snakePos[0].first, snakePos[0].second);
 		TextColor(BLACK, BLACK);
 		cout << " ";
@@ -106,8 +104,6 @@ void MoveLeft(int sizeX, int sizeY, vector<pair<int, int>>& snakePos, vector<pai
 			foodPos.pop_back();
 			GenerateRandomFood(sizeX, sizeY, foodPos, obsPos);
 		}
-
-		GenerateRandomFood(sizeX, sizeY, foodPos, obsPos);
 
 		GotoXY(snakePos[0].first, snakePos[0].second);
 		TextColor(BLACK, BLACK);

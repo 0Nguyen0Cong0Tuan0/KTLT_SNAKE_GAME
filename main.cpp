@@ -1,6 +1,7 @@
 #include "console_generator.hpp"
 #include "map_generator.hpp"
 #include "snake.hpp"
+
 using namespace std;
 
 int main()
@@ -24,11 +25,16 @@ int main()
 	InitSnake(size.X, size.Y, snakePos, obsPos);
 	DrawSnake(snakePos);
 
-	unsigned char ch;
+	unsigned char ch = ARROW_RIGHT;
 
-	while (true)
+	while (ch)
 	{
-		ch = InputKey();
+		if (_kbhit()) // Check if a key has been pressed
+		{ 
+			ch = InputKey(); 
+		}
+
+		Sleep(80);
 		switch (ch)
 		{
 		case ARROW_UP:
@@ -42,6 +48,8 @@ int main()
 			break;
 		case ARROW_RIGHT:
 			MoveRight(size.X, size.Y, snakePos, foodPos, obsPos);
+			break;
+		default:
 			break;
 		}
 	}
