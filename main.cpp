@@ -26,33 +26,45 @@ int main()
 	DrawSnake(snakePos);
 
 	unsigned char ch = ARROW_RIGHT;
+	unsigned char temp = ARROW_RIGHT;
+    int time_sleep = 0;
 
-	while (ch)
-	{
-		if (_kbhit()) // Check if a key has been pressed
-		{ 
-			ch = InputKey(); 
-		}
+    while (ch)
+    {
+        if (_kbhit()) // Check if a key has been pressed
+        {
+            ch = InputKey();
+        }
 
-		Sleep(80);
-		switch (ch)
-		{
-		case ARROW_UP:
-			MoveUp(size.X, size.Y, snakePos, foodPos, obsPos);
-			break;
-		case ARROW_DOWN:
-			MoveDown(size.X, size.Y, snakePos, foodPos, obsPos);
-			break;
-		case ARROW_LEFT:
-			MoveLeft(size.X, size.Y, snakePos, foodPos, obsPos);
-			break;
-		case ARROW_RIGHT:
-			MoveRight(size.X, size.Y, snakePos, foodPos, obsPos);
-			break;
-		default:
-			break;
-		}
-	}
+        time_sleep = 100 - ReturnSpeed() * SPEED_FACTOR;
+        Sleep(time_sleep);
+
+        if ((ch == ARROW_UP && temp != ARROW_DOWN) ||
+            (ch == ARROW_DOWN && temp != ARROW_UP) ||
+            (ch == ARROW_LEFT && temp != ARROW_RIGHT) ||
+            (ch == ARROW_RIGHT && temp != ARROW_LEFT))
+        {
+            temp = ch;
+        }
+
+        switch (temp) // Use temp instead of ch to maintain current direction
+        {
+        case ARROW_UP:
+            MoveUp(size.X, size.Y, snakePos, foodPos, obsPos);
+            break;
+        case ARROW_DOWN:
+            MoveDown(size.X, size.Y, snakePos, foodPos, obsPos);
+            break;
+        case ARROW_LEFT:
+            MoveLeft(size.X, size.Y, snakePos, foodPos, obsPos);
+            break;
+        case ARROW_RIGHT:
+            MoveRight(size.X, size.Y, snakePos, foodPos, obsPos);
+            break;
+        default:
+            break;
+        } 
+    }
 
 	GotoXY(0, size.Y - 3);
 	return 0;

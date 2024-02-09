@@ -24,6 +24,7 @@ using namespace std;
 
 #define MSSV "22127052_22127089_22127365_22127436"
 
+#define SPEED_FACTOR 2
 
 //POINT snake[MAX_SIZE_SNAKE];
 //POINT food[MAX_SIZE_FOOD];

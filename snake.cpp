@@ -2,9 +2,6 @@
 #include "map_generator.hpp"
 #include "console_generator.hpp"
 
-extern int SPD;
-int SPD = 1;
-
 void InitSnake(int sizeX, int sizeY, vector<pair<int,int>>& snakePos, vector<pair<int,int>> obsPos)
 {
 	int snakeX, snakeY;
@@ -19,20 +16,43 @@ void InitSnake(int sizeX, int sizeY, vector<pair<int,int>>& snakePos, vector<pai
 
 void DrawSnake(vector<pair<int, int>> snakePos)
 {
-	for (int i = 0; i < snakePos.size(); i++)
+	for (int i = snakePos.size() - 1, j = 0; i >= 0 && j < snakePos.size(); i--, j++)
 	{
-		GotoXY(snakePos[i].first, snakePos[i].second);
+		GotoXY(snakePos[j  ].first, snakePos[j].second);
 		TextColor(BLACK, GREEN);
 		cout << MSSV[i];
 		TextColor(BLACK, WHITE);
 	}
 }
 
-void EatFood(vector<pair<int, int>> &snakePos, vector<pair<int, int>> foodPos)
+void EatFood(vector<pair<int, int>>& snakePos, vector<pair<int, int>> foodPos)
 {
 	// Just eat
-	snakePos.push_back(make_pair(foodPos[0].first, foodPos[0].second));
+	snakePos.insert(snakePos.begin(), make_pair(foodPos[0].first, foodPos[0].second));
+}
+
+void IncreaseSpeed()
+{
 	SPD += 1;
+}
+
+int ReturnSpeed()
+{
+	return SPD;
+}
+
+bool HitBody(int sizeX, int sizeY, vector<pair<int, int>>& snakePos)
+{
+	// Start from the second segment of the snake's body (index 1) since we don't need to compare the head with itself
+	for (int i = 1; i < snakePos.size(); i++)
+	{
+		// Check if the head position matches any other segment of the snake's body
+		if (snakePos[0] == snakePos[i])
+		{
+			return true; // Collision detected
+		}
+	}
+	return false; // No collision detected
 }
 
 void ProcessDead(int sizeY)
@@ -46,78 +66,98 @@ void MoveRight(int sizeX, int sizeY, vector<pair<int, int>>& snakePos, vector<pa
 	// HIT THE OBSTACLE
 	for (int i = 0; i < obsPos.size(); i++)
 	{
-		if (snakePos[0].first == obsPos[i].first - 1 && snakePos[0].second == obsPos[i].second)
+		if (snakePos[snakePos.size() - 1].first == obsPos[i].first - 1 && snakePos[snakePos.size() - 1].second == obsPos[i].second)
 		{
 			ProcessDead(sizeY);
 		}
 	}
 
 	// HIT THE BOADER
-	if (snakePos[0].first == sizeX - StartX)
+	if (snakePos[snakePos.size() - 1].first == sizeX - StartX)
 	{
 		ProcessDead(sizeY);
 	}
 	else
 	{
-		if (snakePos[0] == foodPos[0])
+		if (HitBody(sizeX, sizeY, snakePos))
 		{
-			EatFood(snakePos, foodPos);
-			foodPos.pop_back();
-			GenerateRandomFood(sizeX, sizeY, foodPos, obsPos);
+			ProcessDead(sizeY);
 		}
-
-		GotoXY(snakePos[0].first, snakePos[0].second);
-		TextColor(BLACK, BLACK);
-		cout << " ";
-		TextColor(BLACK, WHITE);
-
-		for (int i = 0; i < snakePos.size() - 1; i++)
+		else
 		{
-			snakePos[i].first = snakePos[i + 1].first;
-			snakePos[i].second = snakePos[i + 1].second;
-		}
-		snakePos[snakePos.size() - 1].first++;
+			if (snakePos[0] == foodPos[0])
+			{
+				EatFood(snakePos, foodPos);
+				IncreaseSpeed();
+				foodPos.pop_back();
+				GenerateRandomFood(sizeX, sizeY, foodPos, obsPos);
+			}
 
-		DrawSnake(snakePos);
+			// Move the snake only if there's no collision
+			GotoXY(snakePos[0].first, snakePos[0].second);
+			TextColor(BLACK, BLACK);
+			cout << " ";
+			TextColor(BLACK, WHITE);
+
+			for (int i = 0; i < snakePos.size() - 1; i++)
+			{
+				snakePos[i].first = snakePos[i + 1].first;
+				snakePos[i].second = snakePos[i + 1].second;
+			}
+
+			snakePos[snakePos.size() - 1].first++;
+
+			DrawSnake(snakePos);
+		}
 	}
 }
 
 void MoveLeft(int sizeX, int sizeY, vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos)
 {
+	// HIT THE OBSTACLE
 	for (int i = 0; i < obsPos.size(); i++)
 	{
-		if (snakePos[0].first == obsPos[i].first + 1 && snakePos[0].second == obsPos[i].second)
+		if (snakePos[snakePos.size() - 1].first == obsPos[i].first + 1 && snakePos[snakePos.size() - 1].second == obsPos[i].second)
 		{
 			ProcessDead(sizeY);
 		}
 	}
 
-	if (snakePos[0].first == StartX)
+	// HIT THE BOADER
+	if (snakePos[snakePos.size() - 1].first == StartX)
 	{
 		ProcessDead(sizeY);
 	}
 	else
 	{
-		if (snakePos[0] == foodPos[0])
+		if (HitBody(sizeX, sizeY, snakePos))
 		{
-			EatFood(snakePos, foodPos);
-			foodPos.pop_back();
-			GenerateRandomFood(sizeX, sizeY, foodPos, obsPos);
+			ProcessDead(sizeY);
 		}
-
-		GotoXY(snakePos[0].first, snakePos[0].second);
-		TextColor(BLACK, BLACK);
-		cout << " ";
-		TextColor(BLACK, WHITE);
-
-		for (int i = 0; i < snakePos.size() - 1; i++)
+		else
 		{
-			snakePos[i].first = snakePos[i + 1].first;
-			snakePos[i].second = snakePos[i + 1].second;
-		}
-		snakePos[snakePos.size() - 1].first--;
+			if (snakePos[0] == foodPos[0])
+			{
+				EatFood(snakePos, foodPos);
+				IncreaseSpeed();
+				foodPos.pop_back();
+				GenerateRandomFood(sizeX, sizeY, foodPos, obsPos);
+			}
 
-		DrawSnake(snakePos);
+			GotoXY(snakePos[0].first, snakePos[0].second);
+			TextColor(BLACK, BLACK);
+			cout << " ";
+			TextColor(BLACK, WHITE);
+
+			for (int i = 0; i < snakePos.size() - 1; i++)
+			{
+				snakePos[i].first = snakePos[i + 1].first;
+				snakePos[i].second = snakePos[i + 1].second;
+			}
+			snakePos[snakePos.size() - 1].first--;
+
+			DrawSnake(snakePos);
+		}
 	}
 }
 
@@ -125,38 +165,46 @@ void MoveUp(int sizeX, int sizeY, vector<pair<int, int>>& snakePos, vector<pair<
 {
 	for (int i = 0; i < obsPos.size(); i++)
 	{
-		if (snakePos[0].first == obsPos[i].first && snakePos[0].second == obsPos[i].second + 1)
+		if (snakePos[snakePos.size() - 1].first == obsPos[i].first && snakePos[snakePos.size() - 1].second == obsPos[i].second + 1)
 		{
 			ProcessDead(sizeY);
 		}
 	}
 
-	if (snakePos[0].second == StartY)
+	if (snakePos[snakePos.size() - 1].second == StartY)
 	{
 		ProcessDead(sizeY);
 	}
 	else
 	{
-		if (snakePos[0] == foodPos[0])
+		if (HitBody(sizeX, sizeY, snakePos))
 		{
-			EatFood(snakePos, foodPos);
-			foodPos.pop_back();
-			GenerateRandomFood(sizeX, sizeY, foodPos, obsPos);
+			ProcessDead(sizeY);
 		}
-
-		GotoXY(snakePos[0].first, snakePos[0].second);
-		TextColor(BLACK, BLACK);
-		cout << " ";
-		TextColor(BLACK, WHITE);
-
-		for (int i = 0; i < snakePos.size() - 1; i++)
+		else
 		{
-			snakePos[i].first = snakePos[i + 1].first;
-			snakePos[i].second = snakePos[i + 1].second;
-		}
-		snakePos[snakePos.size() - 1].second--;
+			if (snakePos[0] == foodPos[0])
+			{
+				EatFood(snakePos, foodPos);
+				IncreaseSpeed();
+				foodPos.pop_back();
+				GenerateRandomFood(sizeX, sizeY, foodPos, obsPos);
+			}
 
-		DrawSnake(snakePos);
+			GotoXY(snakePos[0].first, snakePos[0].second);
+			TextColor(BLACK, BLACK);
+			cout << " ";
+			TextColor(BLACK, WHITE);
+
+			for (int i = 0; i < snakePos.size() - 1; i++)
+			{
+				snakePos[i].first = snakePos[i + 1].first;
+				snakePos[i].second = snakePos[i + 1].second;
+			}
+			snakePos[snakePos.size() - 1].second--;
+
+			DrawSnake(snakePos);
+		}
 	}
 }
 
@@ -164,38 +212,46 @@ void MoveDown(int sizeX, int sizeY, vector<pair<int, int>>& snakePos, vector<pai
 {
 	for (int i = 0; i < obsPos.size(); i++)
 	{
-		if (snakePos[0].first == obsPos[i].first && snakePos[0].second == obsPos[i].second - 1)
+		if (snakePos[snakePos.size() - 1].first == obsPos[i].first && snakePos[snakePos.size() - 1].second == obsPos[i].second - 1)
 		{
 			ProcessDead(sizeY);
 		}
 	}
 
-	if (snakePos[0].second == sizeY - StartY)
+	if (snakePos[snakePos.size() - 1].second == sizeY - StartY)
 	{
 		ProcessDead(sizeY);
 	}
 	else
 	{
-		if (snakePos[0] == foodPos[0])
+		if (HitBody(sizeX, sizeY, snakePos))
 		{
-			EatFood(snakePos, foodPos);
-			foodPos.pop_back();
-			GenerateRandomFood(sizeX, sizeY, foodPos, obsPos);
+			ProcessDead(sizeY);
 		}
-
-		GotoXY(snakePos[0].first, snakePos[0].second);
-		TextColor(BLACK, BLACK);
-		cout << " ";
-		TextColor(BLACK, WHITE);
-
-		for (int i = 0; i < snakePos.size() - 1; i++)
+		else
 		{
-			snakePos[i].first = snakePos[i + 1].first;
-			snakePos[i].second = snakePos[i + 1].second;
-		}
-		snakePos[snakePos.size() - 1].second++;
+			if (snakePos[0] == foodPos[0])
+			{
+				EatFood(snakePos, foodPos);
+				IncreaseSpeed();
+				foodPos.pop_back();
+				GenerateRandomFood(sizeX, sizeY, foodPos, obsPos);
+			}
 
-		DrawSnake(snakePos);
+			GotoXY(snakePos[0].first, snakePos[0].second);
+			TextColor(BLACK, BLACK);
+			cout << " ";
+			TextColor(BLACK, WHITE);
+
+			for (int i = 0; i < snakePos.size() - 1; i++)
+			{
+				snakePos[i].first = snakePos[i + 1].first;
+				snakePos[i].second = snakePos[i + 1].second;
+			}
+			snakePos[snakePos.size() - 1].second++;
+
+			DrawSnake(snakePos);
+		}
 	}
 }
 
