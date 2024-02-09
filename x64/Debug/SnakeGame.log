@@ -1,7 +1,2 @@
-﻿  console_generator.cpp
-  main.cpp
-  map_generator.cpp
-  snake.cpp
-  snake.hpp
-  Generating Code...
+﻿  main.cpp
   SnakeGame.vcxproj -> D:\KTLT_SNAKE_GAME\KTLT_SNAKE_GAME\x64\Debug\SnakeGame.exe
