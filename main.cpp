@@ -1,6 +1,7 @@
 #include "console_generator.hpp"
 #include "map_generator.hpp"
 #include "snake.hpp"
+#include "feature.hpp"
 
 using namespace std;
 
@@ -34,6 +35,23 @@ int main()
         if (_kbhit()) // Check if a key has been pressed
         {
             ch = InputKey();
+
+            switch (ch)
+            {
+                case L_KEY:
+                    SaveGame(obsPos, foodPos, snakePos, temp, ReturnSpeed());
+                    cout << "THANK FOR PLAYING THE GAME\n";
+                    Sleep(10000);
+                    return 0;
+                case T_KEY:
+                    LoadGame(obsPos, foodPos, snakePos, temp, time_sleep);
+                    SPD = time_sleep;
+                    RunGameAgain(obsPos, foodPos, snakePos, size.X, size.Y);
+                    break;
+                default:
+                    break;
+      
+            }
         }
 
         time_sleep = 100 - ReturnSpeed() * SPEED_FACTOR;

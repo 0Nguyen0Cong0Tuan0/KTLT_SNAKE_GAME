@@ -44,7 +44,7 @@ int ReturnSpeed()
 bool HitBody(int sizeX, int sizeY, vector<pair<int, int>>& snakePos)
 {
 	// Start from the second segment of the snake's body (index 1) since we don't need to compare the head with itself
-	for (int i = 1; i < snakePos.size(); i++)
+	for (int i = 3; i < snakePos.size(); i++)
 	{
 		// Check if the head position matches any other segment of the snake's body
 		if (snakePos[0] == snakePos[i])
@@ -289,6 +289,10 @@ unsigned char InputKey()
 			return ARROW_RIGHT;
 		case 'S': case 's':
 			return ARROW_DOWN;
+		case 'L': case 'l':
+			return L_KEY;
+		case 'T': case 't':
+			return T_KEY;
 		}
 	}
 
