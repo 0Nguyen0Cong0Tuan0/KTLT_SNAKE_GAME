@@ -1,0 +1,10 @@
+﻿  console_generator.cpp
+  feature.cpp
+  main.cpp
+  map_generator.cpp
+  snake.cpp
+D:\KTLT_SNAKE_GAME\KTLT_SNAKE_GAME\snake.cpp(17,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  snake.hpp
+  Generating Code...
+x64\Debug\snake.obj : warning LNK4042: object specified more than once; extras ignored
+  SnakeGame.vcxproj -> D:\KTLT_SNAKE_GAME\KTLT_SNAKE_GAME\x64\Debug\SnakeGame.exe

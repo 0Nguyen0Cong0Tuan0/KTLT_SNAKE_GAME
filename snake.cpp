@@ -1,8 +1,6 @@
 #include "snake.hpp"
-#include "map_generator.hpp"
-#include "console_generator.hpp"
 
-void InitSnake(int sizeX, int sizeY, vector<pair<int,int>>& snakePos, vector<pair<int,int>> obsPos)
+void InitSnake(vector<pair<int,int>>& snakePos, vector<pair<int,int>> obsPos)
 {
 	int snakeX, snakeY;
 	do
@@ -25,10 +23,23 @@ void DrawSnake(vector<pair<int, int>> snakePos)
 	}
 }
 
+void CheckEnoughFood()
+{
+	if (FOOD_COUNT == MAX_SIZE_FOOD)
+	{
+		GotoXY(0, sizeY - 2);
+		cout << "Congratulation! You pass the round" << endl;
+	}
+	else
+		FOOD_COUNT += 1;
+}
+
 void EatFood(vector<pair<int, int>>& snakePos, vector<pair<int, int>> foodPos)
 {
 	// Just eat
 	snakePos.insert(snakePos.begin(), make_pair(foodPos[0].first, foodPos[0].second));
+	CheckEnoughFood();
+
 }
 
 void IncreaseSpeed()
@@ -41,7 +52,7 @@ int ReturnSpeed()
 	return SPD;
 }
 
-bool HitBody(int sizeX, int sizeY, vector<pair<int, int>>& snakePos)
+bool HitBody(vector<pair<int, int>>& snakePos)
 {
 	// Start from the second segment of the snake's body (index 1) since we don't need to compare the head with itself
 	for (int i = 3; i < snakePos.size(); i++)
@@ -55,42 +66,65 @@ bool HitBody(int sizeX, int sizeY, vector<pair<int, int>>& snakePos)
 	return false; // No collision detected
 }
 
-void ProcessDead(int sizeY)
+void ProcessDead(vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos)
 {
 	GotoXY(0, sizeY - 2);
-	cout << "Dead!!! Please enter any key to exit";
+	cout << "Dead!!! Please enter any key to exit" << endl;
+	cout << "Do you want to continue the game? (y: yes | n: no): ";
+	unsigned char player_choose = 'm';
+	cin >> player_choose;
+
+	while (player_choose != 'Y' && player_choose != 'y' && player_choose != 'N' && player_choose != 'n')
+	{
+		cout << "Invalid answer. Please try again!" << endl;
+		cout << "Do you want to continue the game? (y: yes | n: no): ";
+		cin >> player_choose;
+	}
+
+	if (player_choose == 'y' || player_choose == 'Y')
+	{
+		obsPos.clear();
+		foodPos.clear();
+		snakePos.clear();
+		RunGameAgain(obsPos, foodPos, snakePos, sizeX, sizeY);
+	}
+	else
+	{
+		cout << "THANK FOR PLAYING THE GAME\n";
+		Sleep(10000);
+		exit(0);
+	}
 }
 
-void MoveRight(int sizeX, int sizeY, vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos)
+void MoveRight(vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos)
 {
 	// HIT THE OBSTACLE
 	for (int i = 0; i < obsPos.size(); i++)
 	{
 		if (snakePos[snakePos.size() - 1].first == obsPos[i].first - 1 && snakePos[snakePos.size() - 1].second == obsPos[i].second)
 		{
-			ProcessDead(sizeY);
+			ProcessDead(snakePos, foodPos, obsPos);
 		}
 	}
 
 	// HIT THE BOADER
 	if (snakePos[snakePos.size() - 1].first == sizeX - StartX)
 	{
-		ProcessDead(sizeY);
+		ProcessDead(snakePos, foodPos, obsPos);
 	}
 	else
 	{
-		if (HitBody(sizeX, sizeY, snakePos))
+		if (HitBody(snakePos))
 		{
-			ProcessDead(sizeY);
+			ProcessDead(snakePos, foodPos, obsPos);
 		}
 		else
 		{
 			if (snakePos[0] == foodPos[0])
 			{
 				EatFood(snakePos, foodPos);
-				IncreaseSpeed();
 				foodPos.pop_back();
-				GenerateRandomFood(sizeX, sizeY, foodPos, obsPos);
+				GenerateRandomFood(foodPos, obsPos);
 			}
 
 			// Move the snake only if there's no collision
@@ -112,36 +146,35 @@ void MoveRight(int sizeX, int sizeY, vector<pair<int, int>>& snakePos, vector<pa
 	}
 }
 
-void MoveLeft(int sizeX, int sizeY, vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos)
+void MoveLeft(vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos)
 {
 	// HIT THE OBSTACLE
 	for (int i = 0; i < obsPos.size(); i++)
 	{
 		if (snakePos[snakePos.size() - 1].first == obsPos[i].first + 1 && snakePos[snakePos.size() - 1].second == obsPos[i].second)
 		{
-			ProcessDead(sizeY);
+			ProcessDead(snakePos, foodPos, obsPos);
 		}
 	}
 
 	// HIT THE BOADER
 	if (snakePos[snakePos.size() - 1].first == StartX)
 	{
-		ProcessDead(sizeY);
+		ProcessDead(snakePos, foodPos, obsPos);
 	}
 	else
 	{
-		if (HitBody(sizeX, sizeY, snakePos))
+		if (HitBody(snakePos))
 		{
-			ProcessDead(sizeY);
+			ProcessDead(snakePos, foodPos, obsPos);
 		}
 		else
 		{
 			if (snakePos[0] == foodPos[0])
 			{
 				EatFood(snakePos, foodPos);
-				IncreaseSpeed();
 				foodPos.pop_back();
-				GenerateRandomFood(sizeX, sizeY, foodPos, obsPos);
+				GenerateRandomFood(foodPos, obsPos);
 			}
 
 			GotoXY(snakePos[0].first, snakePos[0].second);
@@ -161,34 +194,33 @@ void MoveLeft(int sizeX, int sizeY, vector<pair<int, int>>& snakePos, vector<pai
 	}
 }
 
-void MoveUp(int sizeX, int sizeY, vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos)
+void MoveUp(vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos)
 {
 	for (int i = 0; i < obsPos.size(); i++)
 	{
 		if (snakePos[snakePos.size() - 1].first == obsPos[i].first && snakePos[snakePos.size() - 1].second == obsPos[i].second + 1)
 		{
-			ProcessDead(sizeY);
+			ProcessDead(snakePos, foodPos, obsPos);
 		}
 	}
 
 	if (snakePos[snakePos.size() - 1].second == StartY)
 	{
-		ProcessDead(sizeY);
+		ProcessDead(snakePos, foodPos, obsPos);
 	}
 	else
 	{
-		if (HitBody(sizeX, sizeY, snakePos))
+		if (HitBody(snakePos))
 		{
-			ProcessDead(sizeY);
+			ProcessDead(snakePos, foodPos, obsPos);
 		}
 		else
 		{
 			if (snakePos[0] == foodPos[0])
 			{
 				EatFood(snakePos, foodPos);
-				IncreaseSpeed();
 				foodPos.pop_back();
-				GenerateRandomFood(sizeX, sizeY, foodPos, obsPos);
+				GenerateRandomFood(foodPos, obsPos);
 			}
 
 			GotoXY(snakePos[0].first, snakePos[0].second);
@@ -208,34 +240,33 @@ void MoveUp(int sizeX, int sizeY, vector<pair<int, int>>& snakePos, vector<pair<
 	}
 }
 
-void MoveDown(int sizeX, int sizeY, vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos)
+void MoveDown(vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos)
 {
 	for (int i = 0; i < obsPos.size(); i++)
 	{
 		if (snakePos[snakePos.size() - 1].first == obsPos[i].first && snakePos[snakePos.size() - 1].second == obsPos[i].second - 1)
 		{
-			ProcessDead(sizeY);
+			ProcessDead(snakePos, foodPos, obsPos);
 		}
 	}
 
 	if (snakePos[snakePos.size() - 1].second == sizeY - StartY)
 	{
-		ProcessDead(sizeY);
+		ProcessDead(snakePos, foodPos, obsPos);
 	}
 	else
 	{
-		if (HitBody(sizeX, sizeY, snakePos))
+		if (HitBody(snakePos))
 		{
-			ProcessDead(sizeY);
+			ProcessDead(snakePos, foodPos, obsPos);
 		}
 		else
 		{
 			if (snakePos[0] == foodPos[0])
 			{
 				EatFood(snakePos, foodPos);
-				IncreaseSpeed();
 				foodPos.pop_back();
-				GenerateRandomFood(sizeX, sizeY, foodPos, obsPos);
+				GenerateRandomFood(foodPos, obsPos);
 			}
 
 			GotoXY(snakePos[0].first, snakePos[0].second);

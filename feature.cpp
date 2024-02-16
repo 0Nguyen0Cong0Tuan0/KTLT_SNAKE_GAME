@@ -109,10 +109,10 @@ void RunGameAgain(vector<pair<int, int>>& obsPos, vector<pair<int, int>>& foodPo
 {
 	system("cls");
 
-	GenerateBorder(sizeX, sizeY);
-	GenerateObstacles(sizeX, sizeY, obsPos);
-	GenerateRandomFood(sizeX, sizeY, foodPos, obsPos);
+	GenerateBorder();
+	GenerateObstacles(obsPos);
+	GenerateRandomFood(foodPos, obsPos);
 
-	InitSnake(sizeX, sizeY, snakePos, obsPos);
+	InitSnake(snakePos, obsPos);
 	DrawSnake(snakePos);
 }

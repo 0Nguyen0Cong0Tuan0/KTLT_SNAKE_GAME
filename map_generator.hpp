@@ -11,8 +11,8 @@
 #define NUM_OBSTACLES_LV_2 int(22)
 #define NUM_OBSTACLES_LV_3 int(30)
 
-void GenerateBorder(int sizeX, int sizeY);
+void GenerateBorder();
 
-void GenerateRandomFood(int sizeX, int sizeY, vector<pair<int,int>>& foodPos, vector<pair<int, int>> obsPos);
+void GenerateRandomFood(vector<pair<int,int>>& foodPos, vector<pair<int, int>> obsPos);
 
-void GenerateObstacles(int sizeX, int sizeY, vector<pair<int, int>>& obsPos);
+void GenerateObstacles(vector<pair<int, int>>& obsPos);

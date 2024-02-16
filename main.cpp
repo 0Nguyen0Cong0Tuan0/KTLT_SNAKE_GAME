@@ -2,8 +2,12 @@
 #include "map_generator.hpp"
 #include "snake.hpp"
 #include "feature.hpp"
+#include "header.hpp"
 
 using namespace std;
+
+int sizeX;
+int sizeY;
 
 int main()
 {
@@ -11,23 +15,24 @@ int main()
 
 	RunSetConsole();
 
-
 	// GAMEPLAY
 	COORD size = GetConsoleWindowSize();
+    sizeX = size.X;
+    sizeY = size.Y;
+	
+    vector<pair<int, int>> obsPos;
+    vector<pair<int, int>> foodPos;
+    vector<pair<int, int>> snakePos;
 
-	vector<pair<int, int>> obsPos;
-	vector<pair<int, int>> foodPos;
-	vector<pair<int, int>> snakePos;
+    GenerateBorder();
+    GenerateObstacles(obsPos);
+    GenerateRandomFood(foodPos, obsPos);
 
-	GenerateBorder(size.X, size.Y);
-	GenerateObstacles(size.X, size.Y, obsPos);
-	GenerateRandomFood(size.X, size.Y, foodPos, obsPos);
+    InitSnake(snakePos, obsPos);
+    DrawSnake(snakePos);
 
-	InitSnake(size.X, size.Y, snakePos, obsPos);
-	DrawSnake(snakePos);
-
-	unsigned char ch = ARROW_RIGHT;
-	unsigned char temp = ARROW_RIGHT;
+    unsigned char ch = ARROW_RIGHT;
+    unsigned char temp = ARROW_RIGHT;
     int time_sleep = 0;
 
     while (ch)
@@ -38,19 +43,19 @@ int main()
 
             switch (ch)
             {
-                case L_KEY:
-                    SaveGame(obsPos, foodPos, snakePos, temp, ReturnSpeed());
-                    cout << "THANK FOR PLAYING THE GAME\n";
-                    Sleep(10000);
-                    return 0;
-                case T_KEY:
-                    LoadGame(obsPos, foodPos, snakePos, temp, time_sleep);
-                    SPD = time_sleep;
-                    RunGameAgain(obsPos, foodPos, snakePos, size.X, size.Y);
-                    break;
-                default:
-                    break;
-      
+            case L_KEY:
+                SaveGame(obsPos, foodPos, snakePos, temp, ReturnSpeed());
+                cout << "THANK FOR PLAYING THE GAME\n";
+                Sleep(10000);
+                return 0;
+            case T_KEY:
+                LoadGame(obsPos, foodPos, snakePos, temp, time_sleep);
+                SPD = time_sleep;
+                RunGameAgain(obsPos, foodPos, snakePos, size.X, size.Y);
+                break;
+            default:
+                break;
+
             }
         }
 
@@ -68,22 +73,22 @@ int main()
         switch (temp) // Use temp instead of ch to maintain current direction
         {
         case ARROW_UP:
-            MoveUp(size.X, size.Y, snakePos, foodPos, obsPos);
+            MoveUp(snakePos, foodPos, obsPos);
             break;
         case ARROW_DOWN:
-            MoveDown(size.X, size.Y, snakePos, foodPos, obsPos);
+            MoveDown(snakePos, foodPos, obsPos);
             break;
         case ARROW_LEFT:
-            MoveLeft(size.X, size.Y, snakePos, foodPos, obsPos);
+            MoveLeft(snakePos, foodPos, obsPos);
             break;
         case ARROW_RIGHT:
-            MoveRight(size.X, size.Y, snakePos, foodPos, obsPos);
+            MoveRight(snakePos, foodPos, obsPos);
             break;
         default:
             break;
-        } 
+        }
     }
 
-	GotoXY(0, size.Y - 3);
+    GotoXY(0, size.Y - 3);
 	return 0;
 }

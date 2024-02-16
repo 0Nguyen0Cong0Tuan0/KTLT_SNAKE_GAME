@@ -1,3 +1,6 @@
+#ifndef HEADER_HPP
+#define HEADER_HPP
+
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -29,7 +32,10 @@ using namespace std;
 
 #define MSSV "22127052_22127089_22127365_22127436"
 
-#define SPEED_FACTOR 5
+#define SPEED_FACTOR 10
+
+extern int sizeX;
+extern int sizeY;
 
 //POINT snake[MAX_SIZE_SNAKE];
 //POINT food[MAX_SIZE_FOOD];
@@ -38,3 +44,5 @@ using namespace std;
 //int FOOD_INDX, SIZE_SNAKE = 6;
 
 //bool ALIVE;
+
+#endif // HEADER_HPP

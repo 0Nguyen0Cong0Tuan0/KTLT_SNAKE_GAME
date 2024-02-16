@@ -1,11 +1,17 @@
 #pragma once
 #include "header.hpp"
+#include "map_generator.hpp"
+#include "console_generator.hpp"
+#include "feature.hpp"
 
 static int SPD = 0;
+static int FOOD_COUNT = 0;
 
-void InitSnake(int sizeX, int sizeY, vector<pair<int,int>>& snakePos, vector<pair<int, int>> obsPos);
+void InitSnake(vector<pair<int,int>>& snakePos, vector<pair<int, int>> obsPos);
 
 void DrawSnake(vector<pair<int, int>> snakePos);
+
+void CheckEnoughFood();
 
 void EatFood(vector<pair<int, int>>& snakePos, vector<pair<int, int>> foodPos);
 
@@ -13,16 +19,16 @@ void IncreaseSpeed();
 
 int ReturnSpeed();
 
-bool HitBody(int sizeX, int sizeY, vector<pair<int, int>>& snakePos);
+bool HitBody(vector<pair<int, int>>& snakePos);
 
-void ProcessDead(int sizeY);
+void ProcessDead(vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos);
 
-void MoveRight(int sizeX, int sizeY, vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos);
+void MoveRight(vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos);
 
-void MoveLeft(int sizeX, int sizeY, vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos);
+void MoveLeft(vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos);
 
-void MoveUp(int sizeX, int sizeY, vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos);
+void MoveUp(vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos);
 
-void MoveDown(int sizeX, int sizeY, vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos);
+void MoveDown(vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos);
 
 unsigned char InputKey();

@@ -1,6 +1,6 @@
 #include "map_generator.hpp"
 
-void GenerateBorder(int sizeX, int sizeY)
+void GenerateBorder()
 {
 	
 	for (int i = StartX; i < sizeX - StartX; i++)
@@ -30,7 +30,7 @@ void GenerateBorder(int sizeX, int sizeY)
 	GotoXY(0, sizeY - 1);
 }
 
-void GenerateRandomFood(int sizeX, int sizeY, vector<pair<int, int>>& foodPos, const vector<pair<int, int>> obsPos)
+void GenerateRandomFood(vector<pair<int, int>>& foodPos, const vector<pair<int, int>> obsPos)
 {
 	int xFood, yFood;
 	int countX = 0;
@@ -50,7 +50,7 @@ void GenerateRandomFood(int sizeX, int sizeY, vector<pair<int, int>>& foodPos, c
 	cout << "O";
 }
 
-void GenerateObstacles(int sizeX, int sizeY, vector<pair<int, int>>& obsPos)
+void GenerateObstacles(vector<pair<int, int>>& obsPos)
 {
 	int xObs, yObs;
 	for (int i = 0; i < NUM_OBSTACLES_LV_1; i++)
