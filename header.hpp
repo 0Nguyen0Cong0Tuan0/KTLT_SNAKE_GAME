@@ -37,6 +37,10 @@ using namespace std;
 extern int sizeX;
 extern int sizeY;
 
+extern vector<pair<int, int>> obsPos;
+extern vector<pair<int, int>> foodPos;
+extern vector<pair<int, int>> snakePos;
+
 //POINT snake[MAX_SIZE_SNAKE];
 //POINT food[MAX_SIZE_FOOD];
 

@@ -1,6 +1,6 @@
 #include "snake.hpp"
 
-void InitSnake(vector<pair<int,int>>& snakePos, vector<pair<int,int>> obsPos)
+void InitSnake()
 {
 	int snakeX, snakeY;
 	do
@@ -12,7 +12,7 @@ void InitSnake(vector<pair<int,int>>& snakePos, vector<pair<int,int>> obsPos)
 	snakePos.push_back(make_pair(snakeX, snakeY));
 }
 
-void DrawSnake(vector<pair<int, int>> snakePos)
+void DrawSnake()
 {
 	for (int i = snakePos.size() - 1, j = 0; i >= 0 && j < snakePos.size(); i--, j++)
 	{
@@ -34,12 +34,11 @@ void CheckEnoughFood()
 		FOOD_COUNT += 1;
 }
 
-void EatFood(vector<pair<int, int>>& snakePos, vector<pair<int, int>> foodPos)
+void EatFood()
 {
 	// Just eat
 	snakePos.insert(snakePos.begin(), make_pair(foodPos[0].first, foodPos[0].second));
 	CheckEnoughFood();
-
 }
 
 void IncreaseSpeed()
@@ -52,7 +51,7 @@ int ReturnSpeed()
 	return SPD;
 }
 
-bool HitBody(vector<pair<int, int>>& snakePos)
+bool HitBody()
 {
 	// Start from the second segment of the snake's body (index 1) since we don't need to compare the head with itself
 	for (int i = 3; i < snakePos.size(); i++)
@@ -66,7 +65,7 @@ bool HitBody(vector<pair<int, int>>& snakePos)
 	return false; // No collision detected
 }
 
-void ProcessDead(vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos)
+void ProcessDead()
 {
 	GotoXY(0, sizeY - 2);
 	cout << "Dead!!! Please enter any key to exit" << endl;
@@ -86,7 +85,7 @@ void ProcessDead(vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodP
 		obsPos.clear();
 		foodPos.clear();
 		snakePos.clear();
-		RunGameAgain(obsPos, foodPos, snakePos, sizeX, sizeY);
+		RunGameAgain();
 	}
 	else
 	{
@@ -96,35 +95,35 @@ void ProcessDead(vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodP
 	}
 }
 
-void MoveRight(vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos)
+void MoveRight()
 {
 	// HIT THE OBSTACLE
 	for (int i = 0; i < obsPos.size(); i++)
 	{
 		if (snakePos[snakePos.size() - 1].first == obsPos[i].first - 1 && snakePos[snakePos.size() - 1].second == obsPos[i].second)
 		{
-			ProcessDead(snakePos, foodPos, obsPos);
+			ProcessDead();
 		}
 	}
 
 	// HIT THE BOADER
 	if (snakePos[snakePos.size() - 1].first == sizeX - StartX)
 	{
-		ProcessDead(snakePos, foodPos, obsPos);
+		ProcessDead();
 	}
 	else
 	{
-		if (HitBody(snakePos))
+		if (HitBody())
 		{
-			ProcessDead(snakePos, foodPos, obsPos);
+			ProcessDead();
 		}
 		else
 		{
 			if (snakePos[0] == foodPos[0])
 			{
-				EatFood(snakePos, foodPos);
+				EatFood();
 				foodPos.pop_back();
-				GenerateRandomFood(foodPos, obsPos);
+				GenerateRandomFood();
 			}
 
 			// Move the snake only if there's no collision
@@ -141,40 +140,40 @@ void MoveRight(vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos
 
 			snakePos[snakePos.size() - 1].first++;
 
-			DrawSnake(snakePos);
+			DrawSnake();
 		}
 	}
 }
 
-void MoveLeft(vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos)
+void MoveLeft()
 {
 	// HIT THE OBSTACLE
 	for (int i = 0; i < obsPos.size(); i++)
 	{
 		if (snakePos[snakePos.size() - 1].first == obsPos[i].first + 1 && snakePos[snakePos.size() - 1].second == obsPos[i].second)
 		{
-			ProcessDead(snakePos, foodPos, obsPos);
+			ProcessDead();
 		}
 	}
 
 	// HIT THE BOADER
 	if (snakePos[snakePos.size() - 1].first == StartX)
 	{
-		ProcessDead(snakePos, foodPos, obsPos);
+		ProcessDead();
 	}
 	else
 	{
-		if (HitBody(snakePos))
+		if (HitBody())
 		{
-			ProcessDead(snakePos, foodPos, obsPos);
+			ProcessDead();
 		}
 		else
 		{
 			if (snakePos[0] == foodPos[0])
 			{
-				EatFood(snakePos, foodPos);
+				EatFood();
 				foodPos.pop_back();
-				GenerateRandomFood(foodPos, obsPos);
+				GenerateRandomFood();
 			}
 
 			GotoXY(snakePos[0].first, snakePos[0].second);
@@ -189,38 +188,38 @@ void MoveLeft(vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos,
 			}
 			snakePos[snakePos.size() - 1].first--;
 
-			DrawSnake(snakePos);
+			DrawSnake();
 		}
 	}
 }
 
-void MoveUp(vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos)
+void MoveUp()
 {
 	for (int i = 0; i < obsPos.size(); i++)
 	{
 		if (snakePos[snakePos.size() - 1].first == obsPos[i].first && snakePos[snakePos.size() - 1].second == obsPos[i].second + 1)
 		{
-			ProcessDead(snakePos, foodPos, obsPos);
+			ProcessDead();
 		}
 	}
 
 	if (snakePos[snakePos.size() - 1].second == StartY)
 	{
-		ProcessDead(snakePos, foodPos, obsPos);
+		ProcessDead();
 	}
 	else
 	{
-		if (HitBody(snakePos))
+		if (HitBody())
 		{
-			ProcessDead(snakePos, foodPos, obsPos);
+			ProcessDead();
 		}
 		else
 		{
 			if (snakePos[0] == foodPos[0])
 			{
-				EatFood(snakePos, foodPos);
+				EatFood();
 				foodPos.pop_back();
-				GenerateRandomFood(foodPos, obsPos);
+				GenerateRandomFood();
 			}
 
 			GotoXY(snakePos[0].first, snakePos[0].second);
@@ -235,38 +234,38 @@ void MoveUp(vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, v
 			}
 			snakePos[snakePos.size() - 1].second--;
 
-			DrawSnake(snakePos);
+			DrawSnake();
 		}
 	}
 }
 
-void MoveDown(vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos)
+void MoveDown()
 {
 	for (int i = 0; i < obsPos.size(); i++)
 	{
 		if (snakePos[snakePos.size() - 1].first == obsPos[i].first && snakePos[snakePos.size() - 1].second == obsPos[i].second - 1)
 		{
-			ProcessDead(snakePos, foodPos, obsPos);
+			ProcessDead();
 		}
 	}
 
 	if (snakePos[snakePos.size() - 1].second == sizeY - StartY)
 	{
-		ProcessDead(snakePos, foodPos, obsPos);
+		ProcessDead();
 	}
 	else
 	{
-		if (HitBody(snakePos))
+		if (HitBody())
 		{
-			ProcessDead(snakePos, foodPos, obsPos);
+			ProcessDead();
 		}
 		else
 		{
 			if (snakePos[0] == foodPos[0])
 			{
-				EatFood(snakePos, foodPos);
+				EatFood();
 				foodPos.pop_back();
-				GenerateRandomFood(foodPos, obsPos);
+				GenerateRandomFood();
 			}
 
 			GotoXY(snakePos[0].first, snakePos[0].second);
@@ -281,7 +280,7 @@ void MoveDown(vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos,
 			}
 			snakePos[snakePos.size() - 1].second++;
 
-			DrawSnake(snakePos);
+			DrawSnake();
 		}
 	}
 }

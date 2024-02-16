@@ -7,28 +7,28 @@
 static int SPD = 0;
 static int FOOD_COUNT = 0;
 
-void InitSnake(vector<pair<int,int>>& snakePos, vector<pair<int, int>> obsPos);
+void InitSnake();
 
-void DrawSnake(vector<pair<int, int>> snakePos);
+void DrawSnake();
 
 void CheckEnoughFood();
 
-void EatFood(vector<pair<int, int>>& snakePos, vector<pair<int, int>> foodPos);
+void EatFood();
 
 void IncreaseSpeed();
 
 int ReturnSpeed();
 
-bool HitBody(vector<pair<int, int>>& snakePos);
+bool HitBody();
 
-void ProcessDead(vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos);
+void ProcessDead();
 
-void MoveRight(vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos);
+void MoveRight();
 
-void MoveLeft(vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos);
+void MoveLeft();
 
-void MoveUp(vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos);
+void MoveUp();
 
-void MoveDown(vector<pair<int, int>>& snakePos, vector<pair<int, int>>& foodPos, vector<pair<int, int>> obsPos);
+void MoveDown();
 
 unsigned char InputKey();

@@ -13,6 +13,6 @@
 
 void GenerateBorder();
 
-void GenerateRandomFood(vector<pair<int,int>>& foodPos, vector<pair<int, int>> obsPos);
+void GenerateRandomFood();
 
-void GenerateObstacles(vector<pair<int, int>>& obsPos);
+void GenerateObstacles();

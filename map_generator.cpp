@@ -30,7 +30,7 @@ void GenerateBorder()
 	GotoXY(0, sizeY - 1);
 }
 
-void GenerateRandomFood(vector<pair<int, int>>& foodPos, const vector<pair<int, int>> obsPos)
+void GenerateRandomFood()
 {
 	int xFood, yFood;
 	int countX = 0;
@@ -50,7 +50,7 @@ void GenerateRandomFood(vector<pair<int, int>>& foodPos, const vector<pair<int, 
 	cout << "O";
 }
 
-void GenerateObstacles(vector<pair<int, int>>& obsPos)
+void GenerateObstacles()
 {
 	int xObs, yObs;
 	for (int i = 0; i < NUM_OBSTACLES_LV_1; i++)

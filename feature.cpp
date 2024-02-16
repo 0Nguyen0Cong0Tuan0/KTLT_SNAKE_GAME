@@ -1,7 +1,7 @@
 #include "feature.hpp"
 #include "map_generator.hpp"
 
-void SaveGame(vector<pair<int, int>> obsPos, vector<pair<int, int>> foodPos, vector<pair<int, int>> snakePos, unsigned char temp, int SPD)
+void SaveGame(unsigned char temp, int SPD)
 {
 	system("cls");
 	string name;
@@ -29,7 +29,7 @@ void SaveGame(vector<pair<int, int>> obsPos, vector<pair<int, int>> foodPos, vec
 	fout.close();
 }
 
-void LoadGame(vector<pair<int, int>>& obsPos, vector<pair<int, int>>& foodPos, vector<pair<int, int>>& snakePos, unsigned char& temp, int& SPD)
+void LoadGame(unsigned char& temp, int& SPD)
 {
 	system("cls");
 	string name;
@@ -105,14 +105,14 @@ void LoadGame(vector<pair<int, int>>& obsPos, vector<pair<int, int>>& foodPos, v
 	fin.close();
 }
 
-void RunGameAgain(vector<pair<int, int>>& obsPos, vector<pair<int, int>>& foodPos, vector<pair<int, int>>& snakePos, int sizeX, int sizeY)
+void RunGameAgain()
 {
 	system("cls");
 
 	GenerateBorder();
-	GenerateObstacles(obsPos);
-	GenerateRandomFood(foodPos, obsPos);
+	GenerateObstacles();
+	GenerateRandomFood();
 
-	InitSnake(snakePos, obsPos);
-	DrawSnake(snakePos);
+	InitSnake();
+	DrawSnake();
 }
