@@ -1,5 +1,7 @@
 #include "snake.hpp"
 
+
+
 void InitSnake()
 {
 	int snakeX, snakeY;
@@ -23,12 +25,30 @@ void DrawSnake()
 	}
 }
 
+bool IsPass()
+{
+	return (FOOD_COUNT == LEVEL_1_LENGTH && currentLevel == 0 || FOOD_COUNT == LEVEL_2_LENGTH && currentLevel == 1 || FOOD_COUNT == LEVEL_3_LENGTH && currentLevel == 2);
+}
+
 void CheckEnoughFood()
 {
-	if (FOOD_COUNT == MAX_SIZE_FOOD)
+	if (FOOD_COUNT == LEVEL_1_LENGTH && currentLevel == 0)
 	{
 		GotoXY(0, sizeY - 2);
-		cout << "Congratulation! You pass the round" << endl;
+		currentLevel = 1;
+		cout << "Congratulation! You pass the level 1" << endl;
+	}
+	else if (FOOD_COUNT == LEVEL_2_LENGTH && currentLevel == 1)
+	{
+		GotoXY(0, sizeY - 2);
+		currentLevel = 2;
+		cout << "Congratulation! You pass the level 2" << endl;
+	}
+	else if (FOOD_COUNT == LEVEL_3_LENGTH && currentLevel == 2)
+	{
+		GotoXY(0, sizeY - 2);
+		currentLevel = 3;
+		cout << "Congratulation! You pass the level 3" << endl;
 	}
 	else
 		FOOD_COUNT += 1;
@@ -85,6 +105,8 @@ void ProcessDead()
 		obsPos.clear();
 		foodPos.clear();
 		snakePos.clear();
+		FOOD_COUNT = 0;
+		SPD = 0;
 		RunGameAgain();
 	}
 	else
@@ -239,32 +261,33 @@ void MoveUp()
 	}
 }
 
-void MoveDown()
-{
-	for (int i = 0; i < obsPos.size(); i++)
-	{
-		if (snakePos[snakePos.size() - 1].first == obsPos[i].first && snakePos[snakePos.size() - 1].second == obsPos[i].second - 1)
-		{
+void MoveDown() {
+	for (int i = 0; i < obsPos.size(); i++) {
+		if (snakePos[snakePos.size() - 1].first == obsPos[i].first && snakePos[snakePos.size() - 1].second == obsPos[i].second - 1) {
 			ProcessDead();
 		}
 	}
 
-	if (snakePos[snakePos.size() - 1].second == sizeY - StartY)
-	{
+	if (snakePos[snakePos.size() - 1].second == sizeY - StartY) {
 		ProcessDead();
 	}
-	else
-	{
-		if (HitBody())
-		{
+	else {
+		if (HitBody()) {
 			ProcessDead();
 		}
-		else
-		{
-			if (snakePos[0] == foodPos[0])
-			{
+		else {
+			if (!foodPos.empty() && snakePos[0] == foodPos[0]) {
 				EatFood();
 				foodPos.pop_back();
+			}
+
+			if (IsPass()) {
+				if (!gateGenerated) {
+					GenerateGate();
+					gateGenerated = true;
+				}
+			}
+			else if (!IsPass() && foodPos.empty()) {
 				GenerateRandomFood();
 			}
 
@@ -273,8 +296,7 @@ void MoveDown()
 			cout << " ";
 			TextColor(BLACK, WHITE);
 
-			for (int i = 0; i < snakePos.size() - 1; i++)
-			{
+			for (int i = 0; i < snakePos.size() - 1; i++) {
 				snakePos[i].first = snakePos[i + 1].first;
 				snakePos[i].second = snakePos[i + 1].second;
 			}

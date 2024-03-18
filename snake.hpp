@@ -6,10 +6,13 @@
 
 static int SPD = 0;
 static int FOOD_COUNT = 0;
+static bool gateGenerated = false;
 
 void InitSnake();
 
 void DrawSnake();
+
+bool IsPass();
 
 void CheckEnoughFood();
 

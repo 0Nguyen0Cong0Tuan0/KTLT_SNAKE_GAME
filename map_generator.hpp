@@ -16,3 +16,5 @@ void GenerateBorder();
 void GenerateRandomFood();
 
 void GenerateObstacles();
+
+void GenerateGate();

@@ -81,3 +81,4 @@ void TextColor(int backgroundColor, int textColor)
 	int color_code = backgroundColor * 16 + textColor;
 	SetConsoleTextAttribute(color, color_code);
 }
+

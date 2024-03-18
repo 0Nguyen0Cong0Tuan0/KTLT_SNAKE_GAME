@@ -24,9 +24,9 @@ using namespace std;
 #define ENTER_KEY 0x0D
 #define SPACE_KEY 0x20
 
-
-#define MAX_SIZE_SNAKE 16
-#define MAX_SIZE_FOOD 6
+#define LEVEL_1_LENGTH 3
+#define LEVEL_2_LENGTH 10
+#define LEVEL_3_LENGTH 12
 
 #define MAX_SPEED 3
 
@@ -36,10 +36,19 @@ using namespace std;
 
 extern int sizeX;
 extern int sizeY;
+extern int currentLevel;
 
 extern vector<pair<int, int>> obsPos;
 extern vector<pair<int, int>> foodPos;
 extern vector<pair<int, int>> snakePos;
+extern vector<pair<int, int>> gatePos;
+
+enum MenuOption
+{
+	PLAY,
+	OPTIONS,
+	EXIT
+};
 
 //POINT snake[MAX_SIZE_SNAKE];
 //POINT food[MAX_SIZE_FOOD];

@@ -27,3 +27,4 @@ void RunSetConsole();
 void GotoXY(int x, int y);
 
 void TextColor(int backgroundColor, int textColor);
+

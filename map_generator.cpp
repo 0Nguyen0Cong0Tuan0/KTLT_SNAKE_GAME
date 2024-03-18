@@ -53,18 +53,75 @@ void GenerateRandomFood()
 void GenerateObstacles()
 {
 	int xObs, yObs;
-	for (int i = 0; i < NUM_OBSTACLES_LV_1; i++)
+	if (currentLevel == 0)
 	{
-		do
+		for (int i = 0; i < NUM_OBSTACLES_LV_1; i++)
 		{
-			xObs = rand() % (sizeX - 2 * StartX - 1) + (StartX + 1);
-			yObs = rand() % (sizeY - 2 * StartY - 1) + (StartY + 1);
+			do
+			{
+				xObs = rand() % (sizeX - 2 * StartX - 1) + (StartX + 1);
+				yObs = rand() % (sizeY - 2 * StartY - 1) + (StartY + 1);
 
-		} while (find(obsPos.begin(), obsPos.end(), make_pair(xObs, yObs)) != obsPos.end());
+			} while (find(obsPos.begin(), obsPos.end(), make_pair(xObs, yObs)) != obsPos.end());
 
-		obsPos.push_back(make_pair(xObs, yObs));
+			obsPos.push_back(make_pair(xObs, yObs));
 
-		GotoXY(xObs, yObs);
-		cout << "|";
+			GotoXY(xObs, yObs);
+			cout << "|";
+		}
+	} 
+	else if (currentLevel == 1)
+	{
+		for (int i = 0; i < NUM_OBSTACLES_LV_2; i++)
+		{
+			do
+			{
+				xObs = rand() % (sizeX - 2 * StartX - 1) + (StartX + 1);
+				yObs = rand() % (sizeY - 2 * StartY - 1) + (StartY + 1);
+
+			} while (find(obsPos.begin(), obsPos.end(), make_pair(xObs, yObs)) != obsPos.end());
+
+			obsPos.push_back(make_pair(xObs, yObs));
+
+			GotoXY(xObs, yObs);
+			cout << "|";
+		}
 	}
+	else if (currentLevel == 2)
+	{
+		for (int i = 0; i < NUM_OBSTACLES_LV_3; i++)
+		{
+			do
+			{
+				xObs = rand() % (sizeX - 2 * StartX - 1) + (StartX + 1);
+				yObs = rand() % (sizeY - 2 * StartY - 1) + (StartY + 1);
+
+			} while (find(obsPos.begin(), obsPos.end(), make_pair(xObs, yObs)) != obsPos.end());
+
+			obsPos.push_back(make_pair(xObs, yObs));
+
+			GotoXY(xObs, yObs);
+			cout << "|";
+		}
+	}
+}
+
+void GenerateGate()
+{
+	int xGate, yGate;
+	int countX = 0;
+	int countY = 0;
+
+	do
+	{
+		xGate = rand() % (sizeX - 2 * StartX - 1) + (StartX + 1) + countX;
+		yGate = rand() % (sizeY - 2 * StartY - 1) + (StartY + 1) + countY;
+		countX += 2;
+		countY += 1;
+	} while (find(obsPos.begin(), obsPos.end(), make_pair(xGate, yGate)) != obsPos.end());
+
+	gatePos.push_back(make_pair(xGate, yGate));
+
+	GotoXY(xGate - 1, yGate - 1);
+	cout << "[_]";
 }
