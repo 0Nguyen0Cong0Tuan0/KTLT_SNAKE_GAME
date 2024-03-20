@@ -82,3 +82,16 @@ void TextColor(int backgroundColor, int textColor)
 	SetConsoleTextAttribute(color, color_code);
 }
 
+void DisableUserInput() 
+{
+
+	while (_kbhit()) 
+	{
+		_getch();
+	}
+}
+
+void EnableUserInput() 
+{
+
+}

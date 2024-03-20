@@ -32,16 +32,13 @@ void GenerateBorder()
 
 void GenerateRandomFood()
 {
-	int xFood, yFood;
-	int countX = 0;
-	int countY = 0;
+	int xFood, yFood;;
 
 	do
 	{
-		xFood = rand() % (sizeX - 2 * StartX - 1) + (StartX + 1) + countX;
-		yFood = rand() % (sizeY - 2 * StartY - 1) + (StartY + 1) + countY;
-		countX += 2;
-		countY += 1;
+		xFood = rand() % (sizeX - 2 * StartX - 2) + (StartX + 1);
+		yFood = rand() % (sizeY - 2 * StartY - 2) + (StartY + 1);
+
 	} while (find(obsPos.begin(), obsPos.end(), make_pair(xFood, yFood)) != obsPos.end());
 
 	foodPos.push_back(make_pair(xFood, yFood));
@@ -109,19 +106,20 @@ void GenerateObstacles()
 void GenerateGate()
 {
 	int xGate, yGate;
-	int countX = 0;
-	int countY = 0;
 
 	do
 	{
-		xGate = rand() % (sizeX - 2 * StartX - 1) + (StartX + 1) + countX;
-		yGate = rand() % (sizeY - 2 * StartY - 1) + (StartY + 1) + countY;
-		countX += 2;
-		countY += 1;
+		xGate = rand() % (sizeX - 2 * StartX - 10) + (StartX + 1);
+		yGate = rand() % (sizeY - 2 * StartY - 10) + (StartY + 1);
+
 	} while (find(obsPos.begin(), obsPos.end(), make_pair(xGate, yGate)) != obsPos.end());
 
 	gatePos.push_back(make_pair(xGate, yGate));
 
-	GotoXY(xGate - 1, yGate - 1);
-	cout << "[_]";
+	GotoXY(xGate, yGate);
+	cout << "[";
+	GotoXY(xGate + 1, yGate);
+	cout << "_";
+	GotoXY(xGate + 2, yGate);
+	cout << "]";
 }

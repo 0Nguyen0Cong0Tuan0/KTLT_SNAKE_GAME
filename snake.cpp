@@ -1,7 +1,5 @@
 #include "snake.hpp"
 
-
-
 void InitSnake()
 {
 	int snakeX, snakeY;
@@ -18,9 +16,20 @@ void DrawSnake()
 {
 	for (int i = snakePos.size() - 1, j = 0; i >= 0 && j < snakePos.size(); i--, j++)
 	{
-		GotoXY(snakePos[j  ].first, snakePos[j].second);
+		GotoXY(snakePos[j].first, snakePos[j].second);
 		TextColor(BLACK, GREEN);
 		cout << MSSV[i];
+		TextColor(BLACK, WHITE);
+	}
+}
+
+void EraseSnake()
+{
+	for (int i = snakePos.size() - 1, j = 0; i >= 0 && j < snakePos.size(); i--, j++)
+	{
+		GotoXY(snakePos[j].first, snakePos[j].second);
+		TextColor(BLACK, GREEN);
+		cout << " ";
 		TextColor(BLACK, WHITE);
 	}
 }
@@ -37,21 +46,61 @@ void CheckEnoughFood()
 		GotoXY(0, sizeY - 2);
 		currentLevel = 1;
 		cout << "Congratulation! You pass the level 1" << endl;
+		cout << "Let's find the gate to move in level 2" << endl;
 	}
 	else if (FOOD_COUNT == LEVEL_2_LENGTH && currentLevel == 1)
 	{
 		GotoXY(0, sizeY - 2);
 		currentLevel = 2;
 		cout << "Congratulation! You pass the level 2" << endl;
+		cout << "Let's find the gate to move in level 3" << endl;
 	}
 	else if (FOOD_COUNT == LEVEL_3_LENGTH && currentLevel == 2)
 	{
 		GotoXY(0, sizeY - 2);
 		currentLevel = 3;
 		cout << "Congratulation! You pass the level 3" << endl;
+		cout << "YOU COMPLETE THE GAME <3" << endl;
 	}
 	else
 		FOOD_COUNT += 1;
+}
+
+void DelayAnimation() 
+{
+	Sleep(1000);
+}
+
+void RenderSnake()
+{
+	EraseSnake();
+	
+	snakePos.erase(snakePos.begin());
+
+	if (!snakePos.empty())
+		DrawSnake();
+}
+
+bool IsGoInGate()
+{
+	return (snakePos[0] == gatePos[0]) || ((snakePos[0].first == gatePos[0].first - 1) && (snakePos[0].second == gatePos[0].second)) || ((snakePos[0].first == gatePos[0].first - 2) && (snakePos[0].second == gatePos[0].second));
+}
+
+void GoInGate() 
+{
+	DisableUserInput();
+
+	do 
+	{
+		RenderSnake();
+
+		DelayAnimation();
+
+	} while (!snakePos.empty());
+
+	gatePos.clear();
+
+	EnableUserInput();
 }
 
 void EatFood()
@@ -87,34 +136,7 @@ bool HitBody()
 
 void ProcessDead()
 {
-	GotoXY(0, sizeY - 2);
-	cout << "Dead!!! Please enter any key to exit" << endl;
-	cout << "Do you want to continue the game? (y: yes | n: no): ";
-	unsigned char player_choose = 'm';
-	cin >> player_choose;
-
-	while (player_choose != 'Y' && player_choose != 'y' && player_choose != 'N' && player_choose != 'n')
-	{
-		cout << "Invalid answer. Please try again!" << endl;
-		cout << "Do you want to continue the game? (y: yes | n: no): ";
-		cin >> player_choose;
-	}
-
-	if (player_choose == 'y' || player_choose == 'Y')
-	{
-		obsPos.clear();
-		foodPos.clear();
-		snakePos.clear();
-		FOOD_COUNT = 0;
-		SPD = 0;
-		RunGameAgain();
-	}
-	else
-	{
-		cout << "THANK FOR PLAYING THE GAME\n";
-		Sleep(10000);
-		exit(0);
-	}
+	YesNoMenu();
 }
 
 void MoveRight()
@@ -129,7 +151,7 @@ void MoveRight()
 	}
 
 	// HIT THE BOADER
-	if (snakePos[snakePos.size() - 1].first == sizeX - StartX)
+	if (snakePos[snakePos.size() - 1].first == sizeX - StartX - 1)
 	{
 		ProcessDead();
 	}
@@ -141,10 +163,24 @@ void MoveRight()
 		}
 		else
 		{
-			if (snakePos[0] == foodPos[0])
-			{
+			if (!foodPos.empty() && snakePos[0] == foodPos[0]) {
 				EatFood();
 				foodPos.pop_back();
+			}
+
+			if (IsPass()) 
+			{
+				if (!gateGenerated) 
+				{
+					GenerateGate();
+					gateGenerated = true;
+				}
+				else if (!gatePos.empty() && gateGenerated == true && IsGoInGate() == true)
+				{
+					GoInGate();
+				}
+			}
+			else if (!IsPass() && foodPos.empty()) {
 				GenerateRandomFood();
 			}
 
@@ -179,7 +215,7 @@ void MoveLeft()
 	}
 
 	// HIT THE BOADER
-	if (snakePos[snakePos.size() - 1].first == StartX)
+	if (snakePos[snakePos.size() - 1].first == StartX + 1)
 	{
 		ProcessDead();
 	}
@@ -191,10 +227,23 @@ void MoveLeft()
 		}
 		else
 		{
-			if (snakePos[0] == foodPos[0])
-			{
+			if (!foodPos.empty() && snakePos[0] == foodPos[0]) {
 				EatFood();
 				foodPos.pop_back();
+			}
+
+			if (IsPass()) {
+				if (!gateGenerated) 
+				{
+					GenerateGate();
+					gateGenerated = true;
+				}
+				else if (!gatePos.empty() && gateGenerated == true && IsGoInGate() == true)
+				{
+					GoInGate();
+				}
+			}
+			else if (!IsPass() && foodPos.empty()) {
 				GenerateRandomFood();
 			}
 
@@ -225,7 +274,7 @@ void MoveUp()
 		}
 	}
 
-	if (snakePos[snakePos.size() - 1].second == StartY)
+	if (snakePos[snakePos.size() - 1].second == StartY + 1)
 	{
 		ProcessDead();
 	}
@@ -237,10 +286,25 @@ void MoveUp()
 		}
 		else
 		{
-			if (snakePos[0] == foodPos[0])
+			if (!foodPos.empty() && snakePos[0] == foodPos[0]) 
 			{
 				EatFood();
 				foodPos.pop_back();
+			}
+
+			if (IsPass()) 
+			{
+				if (!gateGenerated) 
+				{
+					GenerateGate();
+					gateGenerated = true;
+				}
+				else if (!gatePos.empty() && gateGenerated == true && IsGoInGate() == true)
+				{
+					GoInGate();
+				}
+			}
+			else if (!IsPass() && foodPos.empty()) {
 				GenerateRandomFood();
 			}
 
@@ -268,7 +332,7 @@ void MoveDown() {
 		}
 	}
 
-	if (snakePos[snakePos.size() - 1].second == sizeY - StartY) {
+	if (snakePos[snakePos.size() - 1].second == sizeY - StartY - 1) {
 		ProcessDead();
 	}
 	else {
@@ -285,6 +349,10 @@ void MoveDown() {
 				if (!gateGenerated) {
 					GenerateGate();
 					gateGenerated = true;
+				}
+				else if (!gatePos.empty() && gateGenerated == true && IsGoInGate() == true)
+				{
+					GoInGate();
 				}
 			}
 			else if (!IsPass() && foodPos.empty()) {

@@ -50,6 +50,12 @@ enum MenuOption
 	EXIT
 };
 
+enum ChooseOption
+{
+	YES,
+	NO
+};
+
 //POINT snake[MAX_SIZE_SNAKE];
 //POINT food[MAX_SIZE_FOOD];
 

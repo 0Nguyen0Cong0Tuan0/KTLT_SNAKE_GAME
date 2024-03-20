@@ -3,6 +3,16 @@
 
 void DrawTitle();
 
+void DrawQuestion();
+
+void DrawChooseYes();
+
+void DrawNotChooseYes();
+
+void DrawChooseNo();
+
+void DrawNotChooseNo();
+
 void DrawChoosePlay();
 
 void DrawNotChoosePlay();
@@ -17,7 +27,11 @@ void DrawNotChooseExit();
 
 void Menu(int selectedOption);
 
+void Question(int selectedOption);
+
 void DisplayMenu();
+
+void YesNoMenu();
 
 void SaveGame(unsigned char temp, int SPD);
 

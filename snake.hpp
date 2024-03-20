@@ -12,9 +12,19 @@ void InitSnake();
 
 void DrawSnake();
 
+void EraseSnake();
+
 bool IsPass();
 
 void CheckEnoughFood();
+
+void DelayAnimation();
+
+void RenderSnake();
+
+bool IsGoInGate();
+
+void GoInGate();
 
 void EatFood();
 

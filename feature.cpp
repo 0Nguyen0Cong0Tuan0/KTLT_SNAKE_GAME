@@ -18,6 +18,75 @@ void DrawTitle()
 	cout << "------------------------------------------------------------\n";
 }
 
+void DrawQuestion()
+{
+	system("cls");
+	GenerateBorder();
+	GotoXY((sizeX - 2 * StartX + 5 - 60) / 2, (sizeY - 2 * StartY - 15) / 2 - 8);
+	cout << "  __  __  _  _  ____  __  _  _  _  _  ___    ____  _  _  ___     __   __   __  __  ___  ___ ";
+	GotoXY((sizeX - 2 * StartX + 5 - 60) / 2, (sizeY - 2 * StartY - 15) / 2 - 7);
+	cout << " / _)/  \\( \\( )(_  _)(  )( \\( )( )( )(  _)  (_  _)( )( )(  _)   / _) (  ) (  \\/  )(  _)(__ )";
+	GotoXY((sizeX - 2 * StartX + 5 - 60) / 2, (sizeY - 2 * StartY - 15) / 2 - 6);
+	cout << "( (_( () ))  (   )(   )(  )  (  )()(  ) _)    )(   )__(  ) _)  ( (/\\ /__\\  )    (  ) _) (_/ ";
+	GotoXY((sizeX - 2 * StartX + 5 - 60) / 2, (sizeY - 2 * StartY - 15) / 2 - 5);
+	cout << " \\__)\\__/(_)\\_) (__) (__)(_)\\_) \\__/ (___)   (__) (_)(_)(___)   \\__/(_)(_)(_/\\/\\_)(___) (_) ";
+	GotoXY((sizeX - 2 * StartX + 5 - 60) / 2, (sizeY - 2 * StartY - 15) / 2 - 4);
+	cout << "--------------------------------------------------------------------------------------------\n";
+}
+
+void DrawChooseYes()
+{
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 5);
+	cout << " _     _  _  ___  ___ ";
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 6);
+	cout << "( \\   ( \\/ )(  _)/ __)";
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 7);
+	cout << " ) )   \\  /  ) _)\\__ \\";
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 8);
+	cout << "(_/   (__/  (___)(___/";
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 9);
+
+}
+
+void DrawNotChooseYes()
+{
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 5);
+	cout << "       _  _  ___  ___ ";
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 6);
+	cout << "      ( \\/ )(  _)/ __)";
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 7);
+	cout << "       \\  /  ) _)\\__ \\";
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 8);
+	cout << "      (__/  (___)(___/";
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 9);
+}
+
+void DrawChooseNo()
+{
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 11);
+	cout << " _     _  _  __ ";
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 12);
+	cout << "( \\   ( \\( )/  \\ ";
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 13);
+	cout << " ) )   )  (( () )";
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 14);
+	cout << "(_/   (_)\\_)\\__/ ";
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 15);
+}
+
+void DrawNotChooseNo()
+{
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 11);
+	cout << "       _  _  __ ";
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 12);
+	cout << "      ( \\( )/  \\ ";
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 13);
+	cout << "       )  (( () )";
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 14);
+	cout << "      (_)\\_)\\__/ ";
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 15);
+}
+
 void DrawChoosePlay()
 {
 	GotoXY((sizeX - 2 * StartX - 20) / 2, (sizeY - 2 * StartY - 15) / 2 + 5);
@@ -113,6 +182,20 @@ void Menu(int selectedOption)
 		DrawNotChooseExit();
 }
 
+void Question(int selectedOption)
+{
+	GotoXY((sizeX - 2 * StartX - 20) / 2, (sizeY - 2 * StartY - 15) / 2 + 5);
+	if (selectedOption == YES)
+		DrawChooseYes();
+	else
+		DrawNotChooseYes();
+	GotoXY((sizeX - 2 * StartX - 20) / 2, (sizeY - 2 * StartY - 15) / 2 + 11);
+	if (selectedOption == NO)
+		DrawChooseNo();
+	else
+		DrawNotChooseNo();
+}
+
 void DisplayMenu()
 {
 	DrawTitle();
@@ -141,6 +224,45 @@ void DisplayMenu()
 				break;
 			case EXIT:
 				return; // Exit the program
+			}
+		}
+	}
+}
+
+void YesNoMenu()
+{
+	DrawQuestion();
+
+	int chooseOption = YES; // Default selected option is PLAY
+
+	while (true) {
+		Question(chooseOption);
+
+		char key = _getch(); // Get user input without waiting for Enter key
+
+		if (key == 'w' || key == 'W' || key == ARROW_UP) {
+			chooseOption = (chooseOption == YES) ? NO : static_cast<ChooseOption>(chooseOption - 1);
+		}
+		else if (key == 's' || key == 'S' || key == ARROW_DOWN) {
+			chooseOption = (chooseOption == NO) ? YES : static_cast<ChooseOption>(chooseOption + 1);
+		}
+		else if (key == ENTER_KEY) { // ASCII value of Enter key
+			switch (chooseOption) {
+			case YES:
+				obsPos.clear();
+				foodPos.clear();
+				snakePos.clear();
+				gatePos.clear();
+				FOOD_COUNT = 0;
+				SPD = 0;
+				gateGenerated = false;
+				RunGameAgain();
+				return;
+			case NO:
+				cout << "THANK FOR PLAYING THE GAME\n";
+				Sleep(10000);
+				exit(0);
+				return;
 			}
 		}
 	}
