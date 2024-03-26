@@ -24,23 +24,24 @@ using namespace std;
 #define ENTER_KEY 0x0D
 #define SPACE_KEY 0x20
 
-#define LEVEL_1_LENGTH 3
-#define LEVEL_2_LENGTH 10
-#define LEVEL_3_LENGTH 12
+#define LEVEL_1_LENGTH 8
+#define LEVEL_2_LENGTH 16
+#define LEVEL_3_LENGTH 24
 
 #define MAX_SPEED 3
 
 #define MSSV "22127052_22127089_22127365_22127436"
 
-#define SPEED_FACTOR 10
-
 extern int sizeX;
 extern int sizeY;
 extern int currentLevel;
+extern int SPEED_FACTOR;
+extern int SPD;
 
 extern vector<pair<int, int>> obsPos;
 extern vector<pair<int, int>> foodPos;
 extern vector<pair<int, int>> snakePos;
+extern vector<pair<int, int>> tempSnakePos;
 extern vector<pair<int, int>> gatePos;
 
 enum MenuOption

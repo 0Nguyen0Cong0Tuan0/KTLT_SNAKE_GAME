@@ -36,31 +36,31 @@ void EraseSnake()
 
 bool IsPass()
 {
-	return (FOOD_COUNT == LEVEL_1_LENGTH && currentLevel == 0 || FOOD_COUNT == LEVEL_2_LENGTH && currentLevel == 1 || FOOD_COUNT == LEVEL_3_LENGTH && currentLevel == 2);
+	return (snakePos.size() == LEVEL_1_LENGTH && currentLevel == 0 || snakePos.size() == LEVEL_2_LENGTH && currentLevel == 1 || snakePos.size() == LEVEL_3_LENGTH && currentLevel == 2);
 }
 
 void CheckEnoughFood()
 {
-	if (FOOD_COUNT == LEVEL_1_LENGTH && currentLevel == 0)
+	if (snakePos.size() == LEVEL_1_LENGTH && currentLevel == 0)
 	{
-		GotoXY(0, sizeY - 2);
-		currentLevel = 1;
+		GotoXY(0, 0);
 		cout << "Congratulation! You pass the level 1" << endl;
 		cout << "Let's find the gate to move in level 2" << endl;
+		SPEED_FACTOR = 15;
 	}
-	else if (FOOD_COUNT == LEVEL_2_LENGTH && currentLevel == 1)
+	else if (snakePos.size() == LEVEL_2_LENGTH && currentLevel == 1)
 	{
-		GotoXY(0, sizeY - 2);
-		currentLevel = 2;
+		GotoXY(0, 0);
 		cout << "Congratulation! You pass the level 2" << endl;
 		cout << "Let's find the gate to move in level 3" << endl;
+		SPEED_FACTOR = 20;
 	}
-	else if (FOOD_COUNT == LEVEL_3_LENGTH && currentLevel == 2)
+	else if (snakePos.size() == LEVEL_3_LENGTH && currentLevel == 2)
 	{
-		GotoXY(0, sizeY - 2);
-		currentLevel = 3;
+		GotoXY(0, 0);
 		cout << "Congratulation! You pass the level 3" << endl;
 		cout << "YOU COMPLETE THE GAME <3" << endl;
+		SPEED_FACTOR = 25;
 	}
 	else
 		FOOD_COUNT += 1;
@@ -81,14 +81,38 @@ void RenderSnake()
 		DrawSnake();
 }
 
+void whatLevel()
+{
+	if (currentLevel == 0)
+		currentLevel = 1;
+	else if (currentLevel == 1)
+		currentLevel = 2;
+	else if (currentLevel == 2)
+		currentLevel = 3;
+	else
+		currentLevel = 4;
+}
+
+void KeepLastSixElement()
+{
+	for (int i = tempSnakePos.size(); i >= 6; i--)
+	{
+		tempSnakePos.erase(tempSnakePos.begin());
+	}
+
+	snakePos = tempSnakePos;
+}
+
 bool IsGoInGate()
 {
-	return (snakePos[0] == gatePos[0]) || ((snakePos[0].first == gatePos[0].first - 1) && (snakePos[0].second == gatePos[0].second)) || ((snakePos[0].first == gatePos[0].first - 2) && (snakePos[0].second == gatePos[0].second));
+	return (snakePos[snakePos.size() - 1] == gatePos[0]) || ((snakePos[snakePos.size() - 1].first == gatePos[0].first - 1) && (snakePos[snakePos.size() - 1].second == gatePos[0].second)) || ((snakePos[snakePos.size() - 1].first == gatePos[0].first + 1) && (snakePos[snakePos.size() - 1].second == gatePos[0].second));
 }
 
 void GoInGate() 
 {
 	DisableUserInput();
+
+	tempSnakePos = snakePos;
 
 	do 
 	{
@@ -101,23 +125,34 @@ void GoInGate()
 	gatePos.clear();
 
 	EnableUserInput();
+
+	KeepLastSixElement();
+
+	whatLevel();
+
+	IncreaseSpeed();
+
+	RunGame();
 }
 
 void EatFood()
 {
 	// Just eat
 	snakePos.insert(snakePos.begin(), make_pair(foodPos[0].first, foodPos[0].second));
+
 	CheckEnoughFood();
 }
 
 void IncreaseSpeed()
 {
-	SPD += 1;
-}
+	if (currentLevel == 0)
+		SPD = 2;
+	else if (currentLevel == 1)
+		SPD = 3;
+	else if (currentLevel == 2)
+		SPD = 4;
 
-int ReturnSpeed()
-{
-	return SPD;
+	return;
 }
 
 bool HitBody()

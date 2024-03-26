@@ -4,7 +4,6 @@
 #include "console_generator.hpp"
 #include "feature.hpp"
 
-static int SPD = 0;
 static int FOOD_COUNT = 0;
 static bool gateGenerated = false;
 
@@ -18,6 +17,10 @@ bool IsPass();
 
 void CheckEnoughFood();
 
+void whatLevel();
+
+void KeepLastSixElement();
+
 void DelayAnimation();
 
 void RenderSnake();
@@ -29,8 +32,6 @@ void GoInGate();
 void EatFood();
 
 void IncreaseSpeed();
-
-int ReturnSpeed();
 
 bool HitBody();
 

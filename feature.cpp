@@ -34,6 +34,41 @@ void DrawQuestion()
 	cout << "--------------------------------------------------------------------------------------------\n";
 }
 
+void DrawThankYou()
+{
+	system("cls");
+	GenerateBorder();
+	GotoXY((sizeX - 2 * StartX - 10) / 2, (sizeY - 2 * StartY - 15) / 2 - 8);
+	cout << " ____  _  _   __   _  _  _ _     ___   __  ___          ";
+	GotoXY((sizeX - 2 * StartX - 10) / 2, (sizeY - 2 * StartY - 15) / 2 - 7);
+	cout << "(_  _)( )( ) (  ) ( \\( )( ) )   (  _) /  \\(  ,)         ";
+	GotoXY((sizeX - 2 * StartX - 10) / 2, (sizeY - 2 * StartY - 15) / 2 - 6);
+	cout << "  )(   )__(  /__\\  )  (  )  \\    ) _)( () ))  \\         ";
+	GotoXY((sizeX - 2 * StartX - 10) / 2, (sizeY - 2 * StartY - 15) / 2 - 5);
+	cout << " (__) (_)(_)(_)(_)(_)\\_)(_)\\_)  (_)   \\__/(_)\\_)        ";
+	GotoXY((sizeX - 2 * StartX - 10) / 2, (sizeY - 2 * StartY - 15) / 2 - 4);
+
+	GotoXY((sizeX - 2 * StartX - 16) / 2, (sizeY - 2 * StartY - 10) / 2 - 3);
+	cout << " ___  __     __   _  _  __  _  _  __    ____  _  _  ___ ";
+	GotoXY((sizeX - 2 * StartX - 16) / 2, (sizeY - 2 * StartY - 10) / 2 - 2);
+	cout << "(  ,\\(  )   (  ) ( \\/ )(  )( \\( )/ _)  (_  _)( )( )(  _)";
+	GotoXY((sizeX - 2 * StartX - 16) / 2, (sizeY - 2 * StartY - 10) / 2 - 1);
+	cout << " ) _/ )(__  /__\\  \\  /  )(  )  (( (/\\    )(   )__(  ) _)";
+	GotoXY((sizeX - 2 * StartX - 16) / 2, (sizeY - 2 * StartY - 10) / 2);
+	cout << "(_)  (____)(_)(_)(__/  (__)(_)\\_)\\__/   (__) (_)(_)(___)";
+
+	GotoXY((sizeX - 2 * StartX + 12) / 2, (sizeY - 2 * StartY - 5) / 2 + 1);
+	cout << "  __   __   __  __  ___                                 ";
+	GotoXY((sizeX - 2 * StartX + 12) / 2, (sizeY - 2 * StartY - 5) / 2 + 2);
+	cout << " / _) (  ) (  \\/  )(  _)                                ";
+	GotoXY((sizeX - 2 * StartX + 12) / 2, (sizeY - 2 * StartY - 5) / 2 + 3);
+	cout << "( (/\\ /__\\  )    (  ) _)                                ";
+	GotoXY((sizeX - 2 * StartX + 12) / 2, (sizeY - 2 * StartY - 5) / 2 + 4);
+	cout << " \\__/(_)(_)(_/\\/\\_)(___)                                ";
+
+	GotoXY(0, 0);
+}
+
 void DrawChooseYes()
 {
 	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 5);
@@ -161,6 +196,110 @@ void DrawNotChooseExit()
 	cout << "      (___)(_/\\_)(__) (__) ";
 }
 
+void DrawLevel1()
+{
+	system("cls");
+	GenerateBorder();
+	GotoXY((sizeX - 2 * StartX - 10) / 2, (sizeY - 2 * StartY - 15) / 2 - 8);
+	cout << " _  _  __  _  _     __   ___   ___ ";
+	GotoXY((sizeX - 2 * StartX - 10) / 2, (sizeY - 2 * StartY - 15) / 2 - 7);
+	cout << "( \\/ )/  \\( )( )   (  ) (  ,) (  _)";
+	GotoXY((sizeX - 2 * StartX - 10) / 2, (sizeY - 2 * StartY - 15) / 2 - 6);
+	cout << " \\  /( () ))()(    /__\\  )  \\  ) _)";
+	GotoXY((sizeX - 2 * StartX - 10) / 2, (sizeY - 2 * StartY - 15) / 2 - 5);
+	cout << "(__/  \\__/ \\__/   (_)(_)(_)\\_)(___)";
+	GotoXY((sizeX - 2 * StartX - 10) / 2, (sizeY - 2 * StartY - 15) / 2 - 4);
+
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 10) / 2 - 3);
+	cout << " __  _  _                          ";
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 10) / 2 - 2);
+	cout << "(  )( \\( )                         ";
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 10) / 2 - 1);
+	cout << " )(  )  (                          ";
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 10) / 2);
+	cout << "(__)(_)\\_)                         ";
+
+	GotoXY((sizeX - 2 * StartX - 12) / 2, (sizeY - 2 * StartY - 5) / 2 + 1);
+	cout << " __    ___  _  _  ___  __      __  ";
+	GotoXY((sizeX - 2 * StartX - 12) / 2, (sizeY - 2 * StartY - 5) / 2 + 2);
+	cout << "(  )  (  _)( )( )(  _)(  )    (  )";
+	GotoXY((sizeX - 2 * StartX - 12) / 2, (sizeY - 2 * StartY - 5) / 2 + 3);
+	cout << " )(__  ) _) \\\\//  ) _) )(__    )(  ";
+	GotoXY((sizeX - 2 * StartX - 12) / 2, (sizeY - 2 * StartY - 5) / 2 + 4);
+	cout << "(____)(___) (__) (___)(____)  (__) ";
+
+	GotoXY(0, 0);
+}
+
+void DrawLevel2()
+{
+	system("cls");
+	GenerateBorder();
+	GotoXY((sizeX - 2 * StartX - 10) / 2, (sizeY - 2 * StartY - 15) / 2 - 8);
+	cout << " _  _  __  _  _     __   ___   ___ ";
+	GotoXY((sizeX - 2 * StartX - 10) / 2, (sizeY - 2 * StartY - 15) / 2 - 7);
+	cout << "( \\/ )/  \\( )( )   (  ) (  ,) (  _)";
+	GotoXY((sizeX - 2 * StartX - 10) / 2, (sizeY - 2 * StartY - 15) / 2 - 6);
+	cout << " \\  /( () ))()(    /__\\  )  \\  ) _)";
+	GotoXY((sizeX - 2 * StartX - 10) / 2, (sizeY - 2 * StartY - 15) / 2 - 5);
+	cout << "(__/  \\__/ \\__/   (_)(_)(_)\\_)(___)";
+	GotoXY((sizeX - 2 * StartX - 10) / 2, (sizeY - 2 * StartY - 15) / 2 - 4);
+
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 10) / 2 - 3);
+	cout << " __  _  _                          ";
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 10) / 2 - 2);
+	cout << "(  )( \\( )                         ";
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 10) / 2 - 1);
+	cout << " )(  )  (                          ";
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 10) / 2);
+	cout << "(__)(_)\\_)                         ";
+
+	GotoXY((sizeX - 2 * StartX - 12) / 2, (sizeY - 2 * StartY - 5) / 2 + 1);
+	cout << " __    ___  _  _  ___  __      ___ ";
+	GotoXY((sizeX - 2 * StartX - 12) / 2, (sizeY - 2 * StartY - 5) / 2 + 2);
+	cout << "(  )  (  _)( )( )(  _)(  )    (__ \\";
+	GotoXY((sizeX - 2 * StartX - 12) / 2, (sizeY - 2 * StartY - 5) / 2 + 3);
+	cout << " )(__  ) _) \\\\//  ) _) )(__   / __/";
+	GotoXY((sizeX - 2 * StartX - 12) / 2, (sizeY - 2 * StartY - 5) / 2 + 4);
+	cout << "(____)(___) (__) (___)(____)  \\___)";
+
+	GotoXY(0, 0);
+}
+
+void DrawLevel3()
+{
+	system("cls");
+	GenerateBorder();
+	GotoXY((sizeX - 2 * StartX - 10) / 2, (sizeY - 2 * StartY - 15) / 2 - 8);
+	cout << " _  _  __  _  _     __   ___   ___ ";
+	GotoXY((sizeX - 2 * StartX - 10) / 2, (sizeY - 2 * StartY - 15) / 2 - 7);
+	cout << "( \\/ )/  \\( )( )   (  ) (  ,) (  _)";
+	GotoXY((sizeX - 2 * StartX - 10) / 2, (sizeY - 2 * StartY - 15) / 2 - 6);
+	cout << " \\  /( () ))()(    /__\\  )  \\  ) _)";
+	GotoXY((sizeX - 2 * StartX - 10) / 2, (sizeY - 2 * StartY - 15) / 2 - 5);
+	cout << "(__/  \\__/ \\__/   (_)(_)(_)\\_)(___)";
+	GotoXY((sizeX - 2 * StartX - 10) / 2, (sizeY - 2 * StartY - 15) / 2 - 4);
+
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 10) / 2 - 3);
+	cout << " __  _  _                          ";
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 10) / 2 - 2);
+	cout << "(  )( \\( )                         ";
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 10) / 2 - 1);
+	cout << " )(  )  (                          ";
+	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 10) / 2);
+	cout << "(__)(_)\\_)                         ";
+
+	GotoXY((sizeX - 2 * StartX - 12) / 2, (sizeY - 2 * StartY - 5) / 2 + 1);
+	cout << " __    ___  _  _  ___  __      ___ ";
+	GotoXY((sizeX - 2 * StartX - 12) / 2, (sizeY - 2 * StartY - 5) / 2 + 2);
+	cout << "(  )  (  _)( )( )(  _)(  )    (__ )";
+	GotoXY((sizeX - 2 * StartX - 12) / 2, (sizeY - 2 * StartY - 5) / 2 + 3);
+	cout << " )(__  ) _) \\\\//  ) _) )(__    (_ \\";
+	GotoXY((sizeX - 2 * StartX - 12) / 2, (sizeY - 2 * StartY - 5) / 2 + 4);
+	cout << "(____)(___) (__) (___)(____)  (___/";
+
+	GotoXY(0, 0);
+}
 
 void Menu(int selectedOption) 
 {
@@ -251,16 +390,13 @@ void YesNoMenu()
 			case YES:
 				obsPos.clear();
 				foodPos.clear();
-				snakePos.clear();
 				gatePos.clear();
-				FOOD_COUNT = 0;
-				SPD = 0;
 				gateGenerated = false;
-				RunGameAgain();
+				RunGame();
 				return;
 			case NO:
-				cout << "THANK FOR PLAYING THE GAME\n";
-				Sleep(10000);
+				DrawThankYou();
+				Sleep(5000);
 				exit(0);
 				return;
 			}
@@ -268,7 +404,21 @@ void YesNoMenu()
 	}
 }
 
-void SaveGame(unsigned char temp, int SPD)
+void ShowLevelIn()
+{
+	if (currentLevel == 0)
+		DrawLevel1();
+	else if (currentLevel == 1)
+		DrawLevel2();
+	else if (currentLevel == 2)
+		DrawLevel3();
+	else
+		return;
+
+	Sleep(3000);
+}
+
+void SaveGame(unsigned char temp)
 {
 	system("cls");
 	string name;
@@ -292,6 +442,7 @@ void SaveGame(unsigned char temp, int SPD)
 
 	fout << "Direction: " << temp << endl;
 	fout << "Speed: " << SPD << endl;
+	fout << "Level: " << currentLevel << endl;
 
 	fout.close();
 }
@@ -367,26 +518,30 @@ void LoadGame(unsigned char& temp, int& SPD)
 			string speedStr;
 			ss >> speedStr >> SPD;
 		}
+		else if (line.find("Level:") != string::npos)
+		{
+			stringstream ss(line);
+			string speedStr;
+			ss >> speedStr >> currentLevel;
+		}
 	}
 
+
 	fin.close();
-}
-
-void RunGameAgain()
-{
-	system("cls");
-
-	GenerateBorder();
-	GenerateObstacles();
-	GenerateRandomFood();
-
-	InitSnake();
-	DrawSnake();
 }
 
 void RunGame()
 {
 	system("cls");
+
+	ShowLevelIn();
+
+	system("cls");
+
+	if (currentLevel == 1 || currentLevel == 2)
+		KeepLastSixElement();
+	else if (currentLevel == 0)
+		snakePos.clear();
 
 	GenerateBorder();
 	GenerateObstacles();
@@ -408,14 +563,14 @@ void RunGame()
 			switch (ch)
 			{
 			case L_KEY:
-				SaveGame(temp, ReturnSpeed());
-				cout << "THANK FOR PLAYING THE GAME\n";
-				Sleep(10000);
+				SaveGame(temp);
+				DrawThankYou();
+				Sleep(5000);
 				return;
 			case T_KEY:
 				LoadGame(temp, time_sleep);
 				SPD = time_sleep;
-				RunGameAgain();
+				RunGame();
 				break;
 			default:
 				break;
@@ -423,7 +578,7 @@ void RunGame()
 			}
 		}
 
-		time_sleep = 100 - ReturnSpeed() * SPEED_FACTOR;
+		time_sleep = 100 - SPD * SPEED_FACTOR;
 		Sleep(time_sleep);
 
 		if ((ch == ARROW_UP && temp != ARROW_DOWN) ||

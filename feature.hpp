@@ -5,6 +5,8 @@ void DrawTitle();
 
 void DrawQuestion();
 
+void DrawThankYou();
+
 void DrawChooseYes();
 
 void DrawNotChooseYes();
@@ -25,6 +27,12 @@ void DrawChooseExit();
 
 void DrawNotChooseExit();
 
+void DrawLevel1();
+
+void DrawLevel2();
+
+void DrawLevel3();
+
 void Menu(int selectedOption);
 
 void Question(int selectedOption);
@@ -33,10 +41,10 @@ void DisplayMenu();
 
 void YesNoMenu();
 
-void SaveGame(unsigned char temp, int SPD);
+void ShowLevelIn();
+
+void SaveGame(unsigned char temp);
 
 void LoadGame(unsigned char& temp, int& SPD);
-
-void RunGameAgain();
 
 void RunGame();

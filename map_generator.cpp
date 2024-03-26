@@ -116,10 +116,10 @@ void GenerateGate()
 
 	gatePos.push_back(make_pair(xGate, yGate));
 
-	GotoXY(xGate, yGate);
+	GotoXY(xGate - 1, yGate);
 	cout << "[";
-	GotoXY(xGate + 1, yGate);
+	GotoXY(xGate, yGate);
 	cout << "_";
-	GotoXY(xGate + 2, yGate);
+	GotoXY(xGate + 1, yGate);
 	cout << "]";
 }
