@@ -20,6 +20,8 @@ void FixConsoleWindow();
 
 COORD GetConsoleWindowSize();
 
+void hideCursor();
+
 void HideScrollbar();
 
 void RunSetConsole();
