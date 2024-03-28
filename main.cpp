@@ -36,6 +36,6 @@ int main()
     
     DisplayMenu();
 
-    GotoXY(0, size.Y - 3);
+    GotoXY(0, 0);
 	return 0;
 }

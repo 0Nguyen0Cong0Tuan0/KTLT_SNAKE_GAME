@@ -69,6 +69,23 @@ void DrawThankYou()
 	GotoXY(0, 0);
 }
 
+void DrawFileSaved()
+{
+	system("cls");
+	GenerateBorder();
+	GotoXY((sizeX - 2 * StartX - 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 3);
+	cout << " ___  __  __    ___    ___   __  _  _  ___  ___  ";
+	GotoXY((sizeX - 2 * StartX - 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 4);
+	cout << "(  _)(  )(  )  (  _)  / __) (  )( )( )(  _)(   \\ ";
+	GotoXY((sizeX - 2 * StartX - 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 5);
+	cout << " ) _) )(  )(__  ) _)  \\__ \\ /__\\ \\\\//  ) _) ) ) )";
+	GotoXY((sizeX - 2 * StartX - 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 6);
+	cout << "(_)  (__)(____)(___)  (___/(_)(_)(__) (___)(___/ ";
+	GotoXY((sizeX - 2 * StartX - 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 7);                       
+
+	GotoXY(0, 0);
+}
+
 void DrawChooseYes()
 {
 	GotoXY((sizeX - 2 * StartX + 10) / 2, (sizeY - 2 * StartY - 15) / 2 + 5);
@@ -151,25 +168,25 @@ void DrawNotChoosePlay()
 void DrawChooseOption()
 {
 	GotoXY((sizeX - 2 * StartX - 20) / 2, (sizeY - 2 * StartY - 15) / 2 + 11);
-	cout << " _      __  ___  ____  __  __  _  _ ";
+	cout << " _     __  _  _  ___  ____  ___  _  _  __  ____  __  __  _  _ ";
 	GotoXY((sizeX - 2 * StartX - 20) / 2, (sizeY - 2 * StartY - 15) / 2 + 12);
-	cout << "( \\    /  \\(  ,\\(_  _)(  )/  \\( \\( )";
+	cout << "( \\   (  )( \\( )/ __)(_  _)(  ,)( )( )/ _)(_  _)(  )/  \\( \\( )";
 	GotoXY((sizeX - 2 * StartX - 20) / 2, (sizeY - 2 * StartY - 15) / 2 + 13);
-	cout << " ) )  ( () )) _/  )(   )(( () ))  ( ";
+	cout << " ) )   )(  )  ( \\__ \\  )(   )  \\ )()(( (_   )(   )(( () ))  ( ";
 	GotoXY((sizeX - 2 * StartX - 20) / 2, (sizeY - 2 * StartY - 15) / 2 + 14);
-	cout << "(_/    \\__/(_)   (__) (__)\\__/(_)\\_)";
+	cout << "(_/   (__)(_)\\_)(___/ (__) (_)\\_)\\__/ \\__) (__) (__)\\__/(_)\\_)";
 }
 
 void DrawNotChooseOption()
 {
 	GotoXY((sizeX - 2 * StartX - 20) / 2, (sizeY - 2 * StartY - 15) / 2 + 11);
-	cout << "        __  ___  ____  __  __  _  _ ";
+	cout << "       __  _  _  ___  ____  ___  _  _  __  ____  __  __  _  _ ";
 	GotoXY((sizeX - 2 * StartX - 20) / 2, (sizeY - 2 * StartY - 15) / 2 + 12);
-	cout << "       /  \\(  ,\\(_  _)(  )/  \\( \\( )";
+	cout << "      (  )( \\( )/ __)(_  _)(  ,)( )( )/ _)(_  _)(  )/  \\( \\( )";
 	GotoXY((sizeX - 2 * StartX - 20) / 2, (sizeY - 2 * StartY - 15) / 2 + 13);
-	cout << "      ( () )) _/  )(   )(( () ))  ( ";
+	cout << "       )(  )  ( \\__ \\  )(   )  \\ )()(( (_   )(   )(( () ))  ( ";
 	GotoXY((sizeX - 2 * StartX - 20) / 2, (sizeY - 2 * StartY - 15) / 2 + 14);
-	cout << "       \\__/(_)   (__) (__)\\__/(_)\\_)";
+	cout << "      (__)(_)\\_)(___/ (__) (_)\\_)\\__/ \\__) (__) (__)\\__/(_)\\_)";
 }
 
 void DrawChooseExit()
@@ -301,6 +318,164 @@ void DrawLevel3()
 	GotoXY(0, 0);
 }
 
+void DrawLoadFile()
+{
+	system("cls");
+	GenerateBorder();	
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 - 8);
+	cout << " __  _  _  ___  _  _  ____    ____  _  _  ___    ___  __  __    ___ ";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 - 7);
+	cout << "(  )( \\( )(  ,\\( )( )(_  _)  (_  _)( )( )(  _)  (  _)(  )(  )  (  _)";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 - 6);
+	cout << " )(  )  (  ) _/ )()(   )(      )(   )__(  ) _)   ) _) )(  )(__  ) _)";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 - 5);
+	cout << "(__)(_)\\_)(_)   \\__/  (__)    (__) (_)(_)(___)  (_)  (__)(____)(___)";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 - 4);
+	cout << " _  _   __   __  __  ___    ____  __     __    __   __   ___  _     ";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 - 3);
+	cout << "( \\( ) (  ) (  \\/  )(  _)  (_  _)/  \\   (  )  /  \\ (  ) (   \\(_)    ";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 - 2);
+	cout << " )  (  /__\\  )    (  ) _)    )( ( () )   )(__( () )/__\\  ) ) )_     ";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 - 1);
+	cout << "(_)\\_)(_)(_)(_/\\/\\_)(___)   (__) \\__/   (____)\\__/(_)(_)(___/(_)    ";
+}
+
+void DrawErrorFile()
+{
+	system("cls");
+	GenerateBorder();
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2);
+	cout << "  __  __  _  _  __    ___     _  _  __  ____     __  ___  ___  _  _    ___  __  __    ___    ";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 + 1);
+	cout << " / _)/  \\( )( )(  )  (   \\   ( \\( )/  \\(_  _)   /  \\(  ,\\(  _)( \\( )  (  _)(  )(  )  (  _)   ";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 + 2);
+	cout << "( (_( () ))()(  )(__  ) ) )   )  (( () ) )(    ( () )) _/ ) _) )  (    ) _) )(  )(__  ) _) _ ";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 + 3);
+	cout << " \\__)\\__/ \\__/ (____)(___/   (_)\\_)\\__/ (__)    \\__/(_)  (___)(_)\\_)  (_)  (__)(____)(___)(_)";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 + 4);
+	cout << " ____  ___   _  _     __   __   __   __  _  _                                                ";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 + 5);
+	cout << "(_  _)(  ,) ( \\/ )   (  ) / _) (  ) (  )( \\( )                                               ";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 + 6);
+	cout << "  )(   )  \\  \\  /    /__\\( (/\\ /__\\  )(  )  (                                                ";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 + 7);
+	cout << " (__) (_)\\_)(__/    (_)(_)\\__/(_)(_)(__)(_)\\_)                                               ";
+
+
+
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 + 13);
+	cout << " __  _  _  ___  _  _  ____    ____  _  _  ___    ___  __  __    ___ ";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 + 14);
+	cout << "(  )( \\( )(  ,\\( )( )(_  _)  (_  _)( )( )(  _)  (  _)(  )(  )  (  _)";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 + 15);
+	cout << " )(  )  (  ) _/ )()(   )(      )(   )__(  ) _)   ) _) )(  )(__  ) _)";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 + 16);
+	cout << "(__)(_)\\_)(_)   \\__/  (__)    (__) (_)(_)(___)  (_)  (__)(____)(___)";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 + 17);
+	cout << " _  _   __   __  __  ___    ____  __     __    __   __   ___  _     ";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 + 18);
+	cout << "( \\( ) (  ) (  \\/  )(  _)  (_  _)/  \\   (  )  /  \\ (  ) (   \\(_)    ";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 + 19);
+	cout << " )  (  /__\\  )    (  ) _)    )( ( () )   )(__( () )/__\\  ) ) )_     ";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 + 20);
+	cout << "(_)\\_)(_)(_)(_/\\/\\_)(___)   (__) \\__/   (____)\\__/(_)(_)(___/(_)    ";
+}
+
+void DrawSaveFile()
+{
+	system("cls");
+	GenerateBorder();
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 - 8);
+	cout << " __  _  _  ___  _  _  ____    ____  _  _  ___    ___  __  __    ___ ";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 - 7);
+	cout << "(  )( \\( )(  ,\\( )( )(_  _)  (_  _)( )( )(  _)  (  _)(  )(  )  (  _)";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 - 6);
+	cout << " )(  )  (  ) _/ )()(   )(      )(   )__(  ) _)   ) _) )(  )(__  ) _)";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 - 5);
+	cout << "(__)(_)\\_)(_)   \\__/  (__)    (__) (_)(_)(___)  (_)  (__)(____)(___)";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 - 4);
+	cout << " _  _   __   __  __  ___    ____  __     ___   __  _  _  ___  _     ";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 - 3);
+	cout << "( \\( ) (  ) (  \\/  )(  _)  (_  _)/  \\   / __) (  )( )( )(  _)(_)    ";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 - 2);
+	cout << " )  (  /__\\  )    (  ) _)    )( ( () )  \\__ \\ /__\\ \\\\//  ) _) _     ";
+	GotoXY((sizeX - 2 * StartX - 45) / 2, (sizeY - 2 * StartY - 15) / 2 - 1);
+	cout << "(_)\\_)(_)(_)(_/\\/\\_)(___)   (__) \\__/   (___/(_)(_)(__) (___)(_)    ";
+}
+
+void DrawInstruction()
+{
+	system("cls");
+	GenerateBorder();
+	
+	GotoXY((sizeX - 2 * StartX - 50) / 2, (sizeY - 2 * StartY - 15) / 2 - 8);
+	cout << " _    _  ___  __    __  __  __  __  ___    ____  __      __  _  _  ___      __   __   __  __  ___ ";
+	GotoXY((sizeX - 2 * StartX - 50) / 2, (sizeY - 2 * StartY - 15) / 2 - 7);
+	cout << "( \\/\\/ )(  _)(  )  / _)/  \\(  \\/  )(  _)  (_  _)/  \\    /  \\( )( )(  ,)    / _) (  ) (  \\/  )(  _)";
+	GotoXY((sizeX - 2 * StartX - 50) / 2, (sizeY - 2 * StartY - 15) / 2 - 6);
+	cout << " \\    /  ) _) )(__( (_( () ))    (  ) _)    )( ( () )  ( () ))()(  )  \\   ( (/\\ /__\\  )    (  ) _)";
+	GotoXY((sizeX - 2 * StartX - 50) / 2, (sizeY - 2 * StartY - 15) / 2 - 5);
+	cout << "  \\/\\/  (___)(____)\\__)\\__/(_/\\/\\_)(___)   (__) \\__/    \\__/ \\__/ (_)\\_)   \\__/(_)(_)(_/\\/\\_)(___)";
+	GotoXY((sizeX - 2 * StartX - 50) / 2, (sizeY - 2 * StartY - 15) / 2 - 0);
+	cout << " ___  _  _  __    ___ ";
+	GotoXY((sizeX - 2 * StartX - 50) / 2, (sizeY - 2 * StartY - 15) / 2 + 1);
+	cout << "(  ,)( )( )(  )  (  _)";
+	GotoXY((sizeX - 2 * StartX - 50) / 2, (sizeY - 2 * StartY - 15) / 2 + 2);
+	cout << " )  \\ )()(  )(__  ) _)";
+	GotoXY((sizeX - 2 * StartX - 50) / 2, (sizeY - 2 * StartY - 15) / 2 + 3);
+	cout << "(_)\\_)\\__/ (____)(___)";
+	GotoXY((sizeX - 2 * StartX - 40) / 2, (sizeY - 2 * StartY - 15) / 2 + 6);
+	cout << "- YOU HAVE TO PASS 3 LEVELS TO COMPLETE THE GAME.";
+	GotoXY((sizeX - 2 * StartX - 40) / 2, (sizeY - 2 * StartY - 15) / 2 + 7);
+	cout << "- SNAKE RUNS FASTER FOR EACH LEVEL PASSED.";
+	GotoXY((sizeX - 2 * StartX - 40) / 2, (sizeY - 2 * StartY - 15) / 2 + 8);
+	cout << "- TO PASS THE LEVEL, SNAKE NEED TO EAT 8, 16, 24 FOOD.";
+	GotoXY((sizeX - 2 * StartX - 40) / 2, (sizeY - 2 * StartY - 15) / 2 + 9);
+	cout << "- THE SNAKE REMAINS THE LENGTH OF 6 WHEN PASSED THE LEVEL.";
+	GotoXY((sizeX - 2 * StartX - 50) / 2, (sizeY - 2 * StartY - 15) / 2 + 11);
+	cout << " _  _  __  _    _    ____  __     ___  __     __   _  _  ___ ";
+	GotoXY((sizeX - 2 * StartX - 50) / 2, (sizeY - 2 * StartY - 15) / 2 + 12);
+	cout << "( )( )/  \\( \\/\\/ )  (_  _)/  \\   (  ,\\(  )   (  ) ( \\/ )(__ )";
+	GotoXY((sizeX - 2 * StartX - 50) / 2, (sizeY - 2 * StartY - 15) / 2 + 13);
+	cout << " )__(( () )\\    /     )( ( () )   ) _/ )(__  /__\\  \\  /  (_/ ";
+	GotoXY((sizeX - 2 * StartX - 50) / 2, (sizeY - 2 * StartY - 15) / 2 + 14);
+	cout << "(_)(_)\\__/  \\/\\/     (__) \\__/   (_)  (____)(_)(_)(__/   (_) ";
+	GotoXY((sizeX - 2 * StartX - 40) / 2, (sizeY - 2 * StartY - 15) / 2 + 17);
+	cout << "- PRESS THE 'A', 'W', 'S', 'D' KEYS OR 'ARROW_LEFT', 'ARROW_UP', 'ARROW_DOWN', 'ARROW_RIGHT' KEYS";
+	GotoXY((sizeX - 2 * StartX - 40) / 2, (sizeY - 2 * StartY - 15) / 2 + 18);
+	cout << "  TO MOVE THE SNAKE LEFT, UP, DOWN AND RIGHT.";
+	GotoXY((sizeX - 2 * StartX - 40) / 2, (sizeY - 2 * StartY - 15) / 2 + 19);
+	cout << "- PRESS THE 'T' TO LOAD THE FILE.";
+	GotoXY((sizeX - 2 * StartX - 40) / 2, (sizeY - 2 * StartY - 15) / 2 + 20);
+	cout << "- PRESS THE 'T' TO LOAD THE FILE.";
+	GotoXY((sizeX - 2 * StartX - 50) / 2, (sizeY - 2 * StartY - 15) / 2 + 23);
+	cout << " ___  ___   ___  ___  ___     __   _  _  _  _    _ _   ___  _  _    ____  __       ";
+	GotoXY((sizeX - 2 * StartX - 50) / 2, (sizeY - 2 * StartY - 15) / 2 + 24);
+	cout << "(  ,\\(  ,) (  _)/ __)/ __)   (  ) ( \\( )( \\/ )  ( ) ) (  _)( \\/ )  (_  _)/  \\      ";
+	GotoXY((sizeX - 2 * StartX - 50) / 2, (sizeY - 2 * StartY - 15) / 2 + 25);
+	cout << " ) _/ )  \\  ) _)\\__ \\\\__ \\   /__\\  )  (  \\  /    )  \\  ) _) \\  /     )( ( () )     ";
+	GotoXY((sizeX - 2 * StartX - 50) / 2, (sizeY - 2 * StartY - 15) / 2 + 26);
+	cout << "(_)  (_)\\_)(___)(___/(___/  (_)(_)(_)\\_)(__/    (_)\\_)(___)(__/     (__) \\__/      ";
+	GotoXY((sizeX - 2 * StartX - 50) / 2, (sizeY - 2 * StartY - 15) / 2 + 27);
+	cout << " ___   ___  ____  _  _  ___   _  _    ____  _  _  ___    __  __  ___  __  __  _  _ ";
+	GotoXY((sizeX - 2 * StartX - 50) / 2, (sizeY - 2 * StartY - 15) / 2 + 28);
+	cout << "(  ,) (  _)(_  _)( )( )(  ,) ( \\( )  (_  _)( )( )(  _)  (  \\/  )(  _)(  \\/  )( )( )";
+	GotoXY((sizeX - 2 * StartX - 50) / 2, (sizeY - 2 * StartY - 15) / 2 + 29);
+	cout << " )  \\  ) _)  )(   )()(  )  \\  )  (     )(   )__(  ) _)   )    (  ) _) )    (  )()( ";
+	GotoXY((sizeX - 2 * StartX - 50) / 2, (sizeY - 2 * StartY - 15) / 2 + 30);
+	cout << "(_)\\_)(___) (__)  \\__/ (_)\\_)(_)\\_)   (__) (_)(_)(___)  (_/\\/\\_)(___)(_/\\/\\_) \\__/ ";
+
+	char key = _getch();
+
+	if (key)
+	{
+		system("cls");
+		DrawTitle();
+		GenerateBorder();
+		return;
+	}
+}
+
 void Menu(int selectedOption) 
 {
 	GotoXY((sizeX - 2 * StartX - 20) / 2, (sizeY - 2 * StartY - 15) / 2 + 5);
@@ -358,10 +533,10 @@ void DisplayMenu()
 				RunGame();
 				break;
 			case OPTIONS:
-				// Call functions to show options menu
-				// You can implement the options menu logic here
+				DrawInstruction();
 				break;
 			case EXIT:
+				DrawThankYou();
 				return; // Exit the program
 			}
 		}
@@ -421,9 +596,11 @@ void ShowLevelIn()
 void SaveGame(unsigned char temp)
 {
 	system("cls");
+	GenerateBorder();
 	string name;
 
-	cout << "Input the file name to save: ";
+	DrawSaveFile();
+
 	getline(cin, name);
 	name = name + ".txt";
 
@@ -450,9 +627,11 @@ void SaveGame(unsigned char temp)
 void LoadGame(unsigned char& temp, int& SPD)
 {
 	system("cls");
+	GenerateBorder();
 	string name;
+	
+	DrawLoadFile();
 
-	cout << "Input the file name to load: ";
 	getline(cin, name);
 	name = name + ".txt";
 
@@ -461,9 +640,8 @@ void LoadGame(unsigned char& temp, int& SPD)
 
 	while (!fin.is_open())
 	{
-		cout << "Error: Could not open file " << name << " .Try again!" << endl;
+		DrawErrorFile();
 
-		cout << "Input the file name to load: ";
 		getline(cin, name);
 		name = name + ".txt";
 
@@ -564,8 +742,9 @@ void RunGame()
 			{
 			case L_KEY:
 				SaveGame(temp);
-				DrawThankYou();
+				DrawFileSaved();
 				Sleep(5000);
+				DrawTitle();
 				return;
 			case T_KEY:
 				LoadGame(temp, time_sleep);

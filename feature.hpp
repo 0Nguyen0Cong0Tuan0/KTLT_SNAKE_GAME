@@ -27,11 +27,21 @@ void DrawChooseExit();
 
 void DrawNotChooseExit();
 
+void DrawErrorFile();
+
 void DrawLevel1();
 
 void DrawLevel2();
 
 void DrawLevel3();
+
+void DrawLoadFile();
+
+void DrawSaveFile();
+
+void DrawInstruction();
+
+void DrawFileSaved();
 
 void Menu(int selectedOption);
 
